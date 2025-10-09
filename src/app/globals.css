@@ -73,16 +73,27 @@ body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; 
   transition: all 0.4s ease-in-out;
 }
 
-/* Mobile full-height fix */
+/* Mobile full-height fix + smooth scroll */
 html,
 body {
   height: 100%;
   overflow-x: hidden;
-}
-section {
-  height: calc(var(--vh, 1vh) * 100);
+  scroll-behavior: smooth;
 }
 
+/* ✅ Let content flow naturally, no clipping */
+section {
+  min-height: 100vh;
+}
+
+/* 🧘 Add breathing room for bottom UI bars on mobile */
+@media (max-width: 768px) {
+  section {
+    padding-bottom: 6rem; /* keeps gold lines + buttons visible above nav bar */
+  }
+}
+
+/* --- shimmer + animations below --- */
 @keyframes shimmerText {
   0% {
     background-position: -200% 0;
@@ -105,7 +116,7 @@ section {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shimmerText 6s ease-in-out infinite;
-  animation-delay: 1.5s; /* ✨ shimmer starts AFTER fade-in */
+  animation-delay: 1.5s;
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
 }
 
@@ -146,4 +157,23 @@ section {
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+/* ✅ Mobile viewport height fix */
+:root {
+  --vh: 1vh;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: #0e0f11;
+  height: 100%;
+}
+
+/* Force the section to respect mobile browser height */
+section {
+  min-height: calc(var(--vh, 1vh) * 100);
 }

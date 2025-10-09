@@ -8,7 +8,8 @@ export default function Contact() {
       id="contact"
       className="relative bg-gradient-to-b from-[#0e0f11] via-charcoal to-[#0e0f11] text-white py-24 md:py-32"
     >
-      <div className="container grid gap-10 md:grid-cols-2 px-6 md:px-12">
+      {/* 👇 Add suppressHydrationWarning */}
+      <div suppressHydrationWarning className="container grid gap-10 md:grid-cols-2 px-6 md:px-12">
         {/* Left side — Heading & Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

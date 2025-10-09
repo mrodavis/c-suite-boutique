@@ -7,34 +7,41 @@ export default function Hero() {
   const ref = useRef(null);
 
   // Mobile viewport height fix
-  useEffect(() => {
+    useEffect(() => {
     const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
+        if (typeof window !== "undefined") {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty("--vh", `${vh}px`);
+        }
     };
     setVh();
     window.addEventListener("resize", setVh);
     window.addEventListener("orientationchange", setVh);
     return () => {
-      window.removeEventListener("resize", setVh);
-      window.removeEventListener("orientationchange", setVh);
+        window.removeEventListener("resize", setVh);
+        window.removeEventListener("orientationchange", setVh);
     };
-  }, []);
+    }, []);
 
   // Scroll parallax effect for hero text
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start start", "end start"],
+    });
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-    <section
-      id="home"
-      ref={ref}
-      className="relative w-full overflow-hidden bg-black"
-      style={{ height: "calc(var(--vh, 1vh) * 100)" }}
-    >
+      <section
+        id="home"
+        ref={ref}
+        suppressHydrationWarning
+        className="relative w-full overflow-hidden bg-black min-h-screen"
+        style={{
+        minHeight: "calc(var(--vh, 1vh) * 100)",
+        height: "100dvh",
+        }}
+      >
+        <div className="absolute inset-0 bg-black z-0" />
       {/* Background video with fade-in */}
       <motion.div
         className="absolute inset-0"

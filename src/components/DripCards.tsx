@@ -1,4 +1,5 @@
 "use client";
+
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 const drips = [
