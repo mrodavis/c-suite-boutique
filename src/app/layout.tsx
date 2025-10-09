@@ -18,17 +18,15 @@ export const metadata: Metadata = {
   title: "Refresh IV | IV Drip & Wellness",
   description: "Premium IV hydration, vitamin shots, and wellness therapies. Hydrate today. Thrive tomorrow.",
   icons: { icon: "/refresh-logo.png" },
-  other: {
-    preload: [
-      { as: "video", href: "/hero.mp4", type: "video/mp4" },
-      { as: "image", href: "/refresh-logo.png", type: "image/png" },
-    ],
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+        <head>
+          <link rel="preload" as="video" href="/hero.mp4" type="video/mp4" />
+          <link rel="preload" as="image" href="/refresh-logo.png" type="image/png" />
+        </head>
       <body className="bg-charcoal selection:bg-teal-500/30 selection:text-white">
         <main>{children}</main>
       </body>
