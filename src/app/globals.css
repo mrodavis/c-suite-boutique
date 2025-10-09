@@ -177,3 +177,17 @@ body {
 section {
   min-height: calc(var(--vh, 1vh) * 100);
 }
+
+/* Prevents iOS viewport shift gray space */
+body {
+  overscroll-behavior: none;
+  background: #000;
+}
+
+
+html,
+body {
+  background-color: #000 !important;
+  overscroll-behavior: none;
+  color-scheme: dark;
+}

@@ -31,34 +31,49 @@ export default function Hero() {
     const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
-      <section
+        <section
         id="home"
         ref={ref}
         suppressHydrationWarning
-        className="relative w-full overflow-hidden bg-black min-h-screen"
+        className="relative w-full overflow-hidden bg-black"
         style={{
-        minHeight: "calc(var(--vh, 1vh) * 100)",
-        height: "100dvh",
+            height: "calc(var(--vh, 1vh) * 100)",
+            minHeight: "100dvh",
+            maxHeight: "100dvh",
+            backgroundColor: "#000",
         }}
-      >
+        >
         <div className="absolute inset-0 bg-black z-0" />
       {/* Background video with fade-in */}
-      <motion.div
+        <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-      >
+        >
+        {/* Desktop video */}
         <video
-          className="h-full w-full object-cover"
-          src="/hero.mp4"
-          autoPlay
-          loop
-          muted
-          playsInline
-          poster="/hero-fallback.png"
+            className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+            src="/hero.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/hero-fallback.png"
         />
-      </motion.div>
+
+        {/* Mobile video */}
+        <video
+            className="block sm:hidden absolute inset-0 w-full h-full object-cover"
+            src="/hero-mobile.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+            poster="/hero-fallback.png"
+        />
+        </motion.div>
+
 
       {/* Overlays */}
       <div className="absolute inset-0 bg-black/60" />
