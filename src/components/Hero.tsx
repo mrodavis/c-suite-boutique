@@ -35,7 +35,7 @@ export default function Hero() {
         id="home"
         ref={ref}
         suppressHydrationWarning
-        className="relative w-full overflow-hidden bg-black"
+        className="relative w-full overflow-hidden bg-black h-[45vh] sm:h-screen"
         style={{
             height: "calc(var(--vh, 1vh) * 100)",
             minHeight: "100dvh",
