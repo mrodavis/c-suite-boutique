@@ -3,25 +3,147 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --font-inter: 'Inter', sans-serif;
+  --font-playfair: 'Playfair Display', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+.font-playfair {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
+}
+
+html, body { height: 100%; margin: 0; background: #0E0F11; color: #EAEAEA; }
+
+/* Smooth fonts */
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* Re-usable utility for the gold CTA look */
+.btn-gold {
+  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-ink shadow-soft transition-transform will-change-transform;
+  background-image: linear-gradient(90deg, #f7e7a6 0%, #e8c766 30%, #d7a21a 60%, #f4d06f 100%);
+}
+.btn-gold:hover { transform: translateY(-1px) scale(1.01); }
+.btn-outline {
+  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 border border-white/20 text-white;
+}
+.section {
+  @apply relative py-20 md:py-28;
+}
+.section-title {
+  @apply text-3xl md:text-5xl font-playfair tracking-tight text-white relative;
+}
+
+/* ✨ Elegant gold underline accent */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 90px;
+  height: 3px;
+  margin-top: 0.75rem;
+  background: linear-gradient(90deg, #f7e7a6, #e8c766, #d7a21a, #f4d06f);
+  border-radius: 2px;
+}
+.section-sub {
+  @apply text-white/70 max-w-3xl;
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.03);
   }
 }
 
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
+}
+
+/* 🔥 Elegant gold glow hover effect */
+.btn-gold:hover {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.45),
+              0 0 30px rgba(255, 215, 0, 0.25);
+  transform: scale(1.03);
+  transition: all 0.4s ease-in-out;
+}
+
+/* Mobile full-height fix */
+html,
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  overflow-x: hidden;
+}
+section {
+  height: calc(var(--vh, 1vh) * 100);
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@keyframes shimmerText {
+  0% {
+    background-position: -200% 0;
   }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(180, 220, 255, 0.15),
+    rgba(255, 255, 255, 0.95),
+    rgba(120, 200, 255, 0.45),
+    rgba(255, 255, 255, 0.95),
+    rgba(180, 220, 255, 0.15)
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerText 6s ease-in-out infinite;
+  animation-delay: 1.5s; /* ✨ shimmer starts AFTER fade-in */
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
+}
+
+@keyframes shimmerGold {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.text-shimmer-gold {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 230, 180, 0.15),
+    rgba(255, 215, 100, 0.95),
+    rgba(255, 245, 200, 0.65),
+    rgba(255, 215, 100, 0.95),
+    rgba(255, 230, 180, 0.15)
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerGold 8s ease-in-out infinite;
+  animation-delay: 1.5s;
+  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.35));
+}
+
+.price-shimmer {
+  background: linear-gradient(90deg, #f7e7a6, #e8c766, #d7a21a, #f7e7a6);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
