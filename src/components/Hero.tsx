@@ -105,7 +105,7 @@ export default function Hero() {
             transition={{ delay: 0.7, duration: 1 }}
             className="block text-5xl md:text-7xl text-teal-200 drop-shadow-lg font-playfair text-shimmer"
           >
-            Hydrate Today
+            Feel Good
           </motion.span>
           <motion.span
             initial={{ opacity: 0, y: 30 }}
@@ -113,7 +113,7 @@ export default function Hero() {
             transition={{ delay: 1, duration: 1 }}
             className="block text-4xl md:text-6xl mt-2 text-white drop-shadow-md font-playfair"
           >
-            Thrive Tomorrow
+            Feel Refreshed
           </motion.span>
         </motion.h1>
 

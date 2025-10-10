@@ -91,7 +91,7 @@ export default function Navbar() {
               </a>
             ))}
             <a
-              href="#contact"
+              href="/book"
               className="btn-gold text-sm text-ink text-center"
               onClick={() => setOpen(false)}
             >
