@@ -85,13 +85,19 @@ export default function Hero() {
         className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4"
       >
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 0.9, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          className="text-white/70 mb-4 text-lg md:text-xl font-inter"
+        initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+        animate={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+            textShadow: "0 0 12px rgba(255, 215, 0, 0.3)",
+        }}
+        transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+        className="text-transparent bg-clip-text bg-gradient-to-r from-[#f7e7a6] via-[#e8c766] to-[#d7a21a] mb-4 text-lg md:text-xl font-inter font-semibold"
         >
-          Your journey to wellness starts here.
+        Your journey to wellness starts here.
         </motion.p>
+
 
         <motion.h1
           initial={{ opacity: 0, y: 25 }}
@@ -126,9 +132,28 @@ export default function Hero() {
           <a href="/book" className="btn-gold text-ink font-inter">
             BOOK NOW
           </a>
-          <a href="#drips" className="btn-outline font-inter">
-            Explore Drips
-          </a>
+        <motion.a
+        href="#drips"
+        initial={{ opacity: 0, y: 10, boxShadow: "0 0 0 rgba(56, 189, 248, 0)" }}
+        animate={{
+            opacity: 1,
+            y: 0,
+            boxShadow: [
+            "0 0 0 rgba(56, 189, 248, 0)",
+            "0 0 15px rgba(56, 189, 248, 0.45)",
+            "0 0 30px rgba(56, 189, 248, 0.25)",
+            "0 0 0 rgba(56, 189, 248, 0)",
+            ],
+        }}
+        transition={{
+            duration: 2,
+            delay: 1.4,
+            ease: "easeOut",
+        }}
+        className="btn-outline font-inter border-teal-300 text-teal-200 hover:border-teal-400 hover:text-teal-100 transition-all duration-300"
+        >
+        Explore Drips
+        </motion.a>
         </motion.div>
       </motion.div>
     </section>

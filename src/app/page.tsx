@@ -2,6 +2,8 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
 import DripCards from "@/components/DripCards";
+import AddOns from "@/components/AddOns";
+import WellnessShop from "@/components/WellnessShop";
 import HowItWorks from "@/components/HowItWorks";
 import FAQ from "@/components/FAQ";
 import Contact from "@/components/Contact";
@@ -14,6 +16,8 @@ export default function Home() {
       <Hero />
       <FeatureGrid />
       <DripCards />
+      <AddOns />
+      <WellnessShop />
       <HowItWorks />
       <FAQ />
       <Contact />

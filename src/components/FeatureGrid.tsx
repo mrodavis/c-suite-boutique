@@ -1,8 +1,8 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { Droplets, ShieldCheck, Sparkles } from "lucide-react";
-import { ReactNode } from "react";
+import { Droplets, ShieldCheck, Sparkles, X } from "lucide-react";
+import { useState, ReactNode } from "react";
 
 interface Feature {
   icon: ReactNode;
@@ -14,7 +14,7 @@ interface InteractiveFeatureProps extends Feature {
   index: number;
 }
 
-// Feature data
+// 🌟 Feature Data
 const features: Feature[] = [
   {
     icon: <Droplets className="h-7 w-7 text-teal-300" />,
@@ -33,7 +33,7 @@ const features: Feature[] = [
   },
 ];
 
-// 3D Interactive Card component
+// ✨ 3D Interactive Feature Card
 function InteractiveFeature({ icon, title, desc, index }: InteractiveFeatureProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -80,6 +80,8 @@ function InteractiveFeature({ icon, title, desc, index }: InteractiveFeatureProp
 }
 
 export default function FeatureGrid() {
+  const [open, setOpen] = useState(false);
+
   return (
     <section
       id="about"
@@ -102,13 +104,20 @@ export default function FeatureGrid() {
             <span className="text-shimmer-gold">.Taci</span>?
           </h2>
 
-          {/* ✨ Gold Accent Line */}
           <div className="mt-4 h-[2px] w-24 bg-gradient-to-r from-amber-400 to-amber-200 rounded-full shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
 
           <p className="text-lg text-white/80 mt-6 leading-relaxed">
             We combine science-backed formulations with a premium experience so you
             feel restored, focused, and ready to thrive.
           </p>
+
+          {/* Learn More Button */}
+          <button
+            onClick={() => setOpen(true)}
+            className="btn-gold mt-8 text-ink font-inter"
+          >
+            Learn More
+          </button>
         </motion.div>
 
         {/* Feature Grid */}
@@ -118,6 +127,53 @@ export default function FeatureGrid() {
           ))}
         </div>
       </div>
+
+      {/* 🌟 Modal */}
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 bg-black/70 backdrop-blur-md flex items-center justify-center z-50 p-6"
+          onClick={() => setOpen(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.95, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            onClick={(e) => e.stopPropagation()}
+            className="relative bg-charcoal/90 border border-gold/20 rounded-2xl max-w-2xl w-full p-10 shadow-[0_0_40px_rgba(255,215,0,0.1)]"
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-4 right-4 text-white/70 hover:text-gold transition"
+            >
+              <X className="h-6 w-6" />
+            </button>
+
+            <h3 className="text-3xl font-playfair mb-4 text-shimmer-gold">
+              About Refresh-IV.Taci
+            </h3>
+
+            <p className="text-white/80 leading-relaxed mb-6">
+              Founded by Board-Certified Family Nurse Practitioner Tsarina (“Taci”) Garcia, 
+              Refresh-IV.Taci was created with a mission to elevate wellness through 
+              hydration therapy, vitamin infusions, and holistic care. 
+              Combining medical precision with a luxury experience, 
+              each session is designed to restore balance, boost vitality, 
+              and help you feel your best inside and out.
+            </p>
+
+            <a
+              href="/about"
+              className="btn-outline text-white border-gold/30 hover:bg-gold/10 hover:text-gold transition font-inter"
+            >
+              Read Full Story
+            </a>
+          </motion.div>
+        </motion.div>
+      )}
     </section>
   );
 }

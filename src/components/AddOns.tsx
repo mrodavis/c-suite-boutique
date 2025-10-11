@@ -2,38 +2,38 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-// 🩺 Refreshed & Accurate Offerings
-const drips = [
+// 💧 Official Refresh-IV.Taci Add-Ons
+const addOns = [
   {
-    name: "Hydration Boost",
-    price: "$149",
-    desc: "Rapid rehydration with electrolytes and fluids to restore balance and energy.",
+    name: "B Bundle (B1/B6/B12)",
+    price: "$50",
+    desc: "Essential B vitamins to boost energy, mood, and metabolism.",
   },
   {
-    name: "Immunity Shield",
-    price: "$179",
-    desc: "Vitamin C, Zinc, and B-Complex to fortify your body’s natural defenses and fight fatigue.",
+    name: "B12 Shot",
+    price: "$40",
+    desc: "Pure B12 for lasting energy and improved focus. Discount: 3× weekly for $75.",
   },
   {
-    name: "Beauty Glow",
-    price: "$189",
-    desc: "Biotin and antioxidants that nourish your skin, hair, and nails from within for a radiant glow.",
+    name: "Toradol (Ketorolac)",
+    price: "$40",
+    desc: "Fast-acting anti-inflammatory pain relief for headaches and body aches.",
   },
   {
-    name: "Performance",
-    price: "$199",
-    desc: "Amino acids and B12 to boost energy, enhance endurance, and support post-workout recovery.",
+    name: "Zofran (Ondansetron)",
+    price: "$40",
+    desc: "Powerful anti-nausea support for hangovers, migraines, or recovery.",
   },
   {
-    name: "Vitality Drip",
-    price: "$199",
-    desc: "A revitalizing blend of B-vitamins, amino acids, and minerals that support stamina, hormone balance, and overall wellness.",
+    name: "Vitamin D",
+    price: "$40",
+    desc: "Supports immune health, mood balance, and bone strength. 8-week bundle: $300.",
   },
 ];
 
-export default function DripCards() {
+export default function AddOns() {
   return (
-    <section id="drips" className="section bg-charcoal">
+    <section id="add-ons" className="section bg-charcoal">
       <div className="container">
         {/* Header */}
         <motion.div
@@ -43,8 +43,8 @@ export default function DripCards() {
           viewport={{ once: true }}
           className="flex items-end justify-between gap-6 flex-wrap"
         >
-          <h2 className="section-title font-playfair text-4xl md:text-5xl text-shimmer-gold">
-            IV Drips
+          <h2 className="section-title font-playfair text-4xl md:text-5xl text-white">
+            Add-Ons
           </h2>
           <a href="/book" className="btn-gold text-ink font-[var(--font-inter)]">
             Book a Session
@@ -59,8 +59,8 @@ export default function DripCards() {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ staggerChildren: 0.2 }}
         >
-          {drips.map((d, i) => (
-            <InteractiveCard key={d.name} index={i} {...d} />
+          {addOns.map((a, i) => (
+            <InteractiveCard key={a.name} index={i} {...a} />
           ))}
         </motion.div>
       </div>
@@ -68,7 +68,7 @@ export default function DripCards() {
   );
 }
 
-/* ✨ Reusable Interactive Card with 3D Tilt + Float */
+/* ✨ Interactive Add-On Card */
 function InteractiveCard({
   name,
   desc,

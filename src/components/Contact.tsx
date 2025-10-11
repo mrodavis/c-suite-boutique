@@ -40,7 +40,7 @@ export default function Contact() {
               href="mailto:refreshivtaci@gmail.com"
               className="block text-lg hover:text-teal-300 transition-colors"
             >
-              ✉️ hello@refreshiv.com
+              ✉️ hello@therefresh-iv.com
             </a>
           </div>
         </motion.div>
