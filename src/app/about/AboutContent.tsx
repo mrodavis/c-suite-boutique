@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import { Droplets, ShieldCheck, Sparkles } from "lucide-react";
+// import { Droplets, ShieldCheck, Sparkles } from "lucide-react";
 
 
 export default function AboutContent() {
