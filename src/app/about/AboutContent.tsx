@@ -1,11 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
 import { Droplets, ShieldCheck, Sparkles } from "lucide-react";
+
 
 export default function AboutContent() {
   return (
     <main className="bg-[#0e0f11] text-white min-h-screen overflow-hidden">
+        < Navbar />
       {/* 🩵 Hero Section */}
       <section className="relative py-32 md:py-40 bg-[radial-gradient(circle_at_top,_rgba(20,150,140,0.25),_transparent_70%)] text-center">
         <motion.h1
