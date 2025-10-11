@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Do I need to book in advance?",
-    a: "Walk-ins are welcome, but booking ahead ensures your preferred time and drip are ready.",
+    a: "To provide the most relaxing and personalized experience, all IV sessions are by appointment only. This allows us to prepare your custom drip and create a seamless visit just for you.",
   },
 ];
 

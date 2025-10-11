@@ -54,7 +54,7 @@ export default function Hero() {
         {/* Desktop video */}
         <video
             className="hidden sm:block absolute inset-0 w-full h-full object-cover"
-            src="/hero.mp4"
+            src="/hero-mobile.mp4"
             autoPlay
             loop
             muted

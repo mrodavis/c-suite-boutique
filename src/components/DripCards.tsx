@@ -24,7 +24,7 @@ export default function DripCards() {
           <h2 className="section-title font-playfair text-4xl md:text-5xl text-white">
             IV Drips
           </h2>
-          <a href="#contact" className="btn-gold text-ink font-[var(--font-inter)]">
+          <a href="/book" className="btn-gold text-ink font-[var(--font-inter)]">
             Book a Session
           </a>
         </motion.div>
