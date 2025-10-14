@@ -156,6 +156,9 @@ export default function Hero() {
         </motion.a>
         </motion.div>
       </motion.div>
+      {/* Smooth Bottom Fade like The Shot Bar */}
+        <div className="absolute bottom-0 left-0 w-full h-[60px] bg-gradient-to-b from-transparent via-[#0e0f11]/60 to-[#0e0f11] pointer-events-none" />
+
     </section>
   );
 }
