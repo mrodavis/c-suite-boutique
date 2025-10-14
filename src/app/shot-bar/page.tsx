@@ -5,7 +5,6 @@ import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import React from "react";
 
-
 interface Product {
   image: string;
   name: string;
@@ -111,33 +110,67 @@ function ProductCard({ image, name, desc, price, index }: Product) {
 
 export default function ShotBarPage() {
   return (
-    <section className="relative bg-gradient-to-b from-[#0e0f11] via-charcoal to-[#0e0f11] text-white py-24 md:py-32">
-      < Navbar />
-      <div className="container mx-auto px-6 md:px-12 text-center">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <h1 className="text-4xl md:text-5xl font-playfair leading-tight">
-            The Shot Bar
-          </h1>
-          <div className="mx-auto mt-4 h-[2px] w-24 bg-gradient-to-r from-amber-400 to-amber-200 rounded-full shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
-          <p className="text-lg text-white/80 mt-6 leading-relaxed max-w-2xl mx-auto">
-            A collection of powerful vitamin injections to boost your body and mind —  
-            available soon at Refresh-IV.Taci.
-          </p>
-        </motion.div>
+    <main className="bg-[#0e0f11] text-white min-h-screen overflow-hidden">
+      <Navbar />
 
-        {/* Product Grid */}
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((p) => (
-            <ProductCard key={p.name} {...p} />
-          ))}
-        </div>
-      </div>
-    </section>
+{/* 🌊 Flowing Water Header */}
+<section className="relative w-full overflow-hidden">
+  <div className="relative w-full h-[300px] md:h-[340px] overflow-hidden flex items-center justify-center">
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="absolute inset-0 w-full h-[250%] object-cover object-center translate-y-[-38%] scale-[1.05]"
+    >
+      <source src="/splash3.mp4" type="video/mp4" />
+    </video>
+
+    {/* Even tighter fade for seamless merge */}
+    <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-[#0e0f11]/60" />
+    <div className="absolute bottom-0 left-0 w-full h-[15px] bg-gradient-to-b from-transparent to-[#0e0f11]" />
+
+    <motion.h1
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      className="relative z-10 text-4xl md:text-5xl font-playfair tracking-wide text-white text-center drop-shadow-lg"
+    >
+      The Shot Bar
+    </motion.h1>
+    <div className="absolute bottom-0 left-0 w-full h-[25px] bg-gradient-to-b from-transparent via-[#f6da7a25] to-[#0e0f11]" />
+  </div>
+</section>
+
+{/* 💉 Product Section */}
+<section
+  className="relative pt-0 pb-16 md:pb-20 bg-gradient-to-b from-[#0e0f11] via-charcoal to-[#0e0f11]"
+  style={{
+    marginTop: "-33rem", // 🔥 increased overlap
+    zIndex: 2,
+  }}
+>
+  <div className="container mx-auto px-6 md:px-12 text-center">
+    <motion.p
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+      className="text-lg text-white/80 leading-relaxed max-w-2xl mx-auto"
+    >
+      A collection of powerful vitamin injections to boost your body and mind —  
+      available soon at Refresh-IV.Taci.
+    </motion.p>
+
+    <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {products.map((p) => (
+        <ProductCard key={p.name} {...p} />
+      ))}
+    </div>
+  </div>
+</section>
+
+
+    </main>
   );
 }
