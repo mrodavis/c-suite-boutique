@@ -137,7 +137,7 @@ function InteractiveCard({
   const rotateX = useTransform(springY, [-50, 50], [15, -15]);
   const rotateY = useTransform(springX, [-50, 50], [-15, 15]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
     const offsetX = e.clientX - rect.left - rect.width / 2;
     const offsetY = e.clientY - rect.top - rect.height / 2;
