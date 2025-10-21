@@ -5,29 +5,64 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 // 🩺 Refreshed & Accurate Offerings
 const drips = [
   {
-    name: "Hydration Boost",
-    price: "$149",
-    desc: "Rapid rehydration with electrolytes and fluids to restore balance and energy.",
+    name: "Refresh IV (Normal Saline)",
+    price: "$155",
+    desc: "A simple yet powerful hydration drip with Normal Saline to restore balance, rehydrate your body, and refresh your system. Perfect for anyone feeling depleted from travel, workouts, or everyday fatigue.",
   },
   {
-    name: "Immunity Shield",
-    price: "$179",
-    desc: "Vitamin C, Zinc, and B-Complex to fortify your body’s natural defenses and fight fatigue.",
+    name: "Refresh Plus IV (Lactated Ringer)",
+    price: "$165",
+    desc: "An upgraded hydration drip with Lactated Ringer’s for enhanced electrolyte replacement. Ideal for faster recovery after illness, dehydration, or intense exercise.",
   },
   {
-    name: "Beauty Glow",
-    price: "$189",
-    desc: "Biotin and antioxidants that nourish your skin, hair, and nails from within for a radiant glow.",
+    name: "Energy Boost IV",
+    price: "$175",
+    desc: "Packed with B-Complex vitamins, this drip restores energy levels, improves focus, and supports a healthy metabolism. Great for busy professionals or anyone feeling run down.",
   },
   {
-    name: "Performance",
-    price: "$199",
-    desc: "Amino acids and B12 to boost energy, enhance endurance, and support post-workout recovery.",
+    name: "Beauty & Glow IV",
+    price: "$275",
+    desc: "A skin-loving infusion with Vitamin C, Glutathione, Zinc, and Biotin that brightens skin, promotes collagen production, and reduces oxidative stress for that healthy glow.",
   },
   {
-    name: "Vitality Drip",
-    price: "$199",
-    desc: "A revitalizing blend of B-vitamins, amino acids, and minerals that support stamina, hormone balance, and overall wellness.",
+    name: "Hormone Balance IV",
+    price: "$200",
+    desc: "Formulated with Magnesium and B-Complex vitamins to restore essential nutrients, support hormonal health, and uplift mood — encouraging a sense of harmony from within.",
+  },
+  {
+    name: "Hormone Balance IV (Women's Health)",
+    price: "$250",
+    desc: "Specially designed for women with Magnesium, Vitamin B-Complex, and Vitamin C to help regulate hormones, reduce fatigue, and promote emotional balance and energy.",
+  },
+  {
+    name: "Sexual Health Drip",
+    price: "$275",
+    desc: "Formulated to boost stamina, improve circulation, and enhance vitality with Vitamin B12 and amino acids such as Arginine — supporting hormonal balance and confidence.",
+  },
+  {
+    name: "Hangover Recovery",
+    price: "$250",
+    desc: "Rehydrate and revive fast with Vitamin C, B-Complex, and Magnesium. Includes Zofran for anti-nausea support — perfect for post-event recovery.",
+  },
+  {
+    name: "Immunity Boost IV",
+    price: "$250",
+    desc: "A powerful infusion of Vitamin C, Zinc, and B-Complex to strengthen your immune defenses, reduce recovery time, and keep you resilient through stress or illness.",
+  },
+  {
+    name: "Myer’s Cocktail",
+    price: "$250",
+    desc: "The classic wellness drip — a restorative blend of Magnesium, Calcium, B-Vitamins, and Vitamin C designed to reduce fatigue, support immunity, and boost energy.",
+  },
+  {
+    name: "NAD+ Infusion 250mg",
+    price: "$450",
+    desc: "A restorative NAD⁺ infusion that enhances cellular energy, focus, and recovery. Ideal for first-time clients or those seeking gentle rejuvenation.",
+  },
+  {
+    name: "NAD+ Infusion 500mg",
+    price: "$600",
+    desc: "High-dose NAD⁺ infusion delivering maximum cellular repair, improved cognitive clarity, and deep rejuvenation for long-lasting vitality.",
   },
 ];
 
