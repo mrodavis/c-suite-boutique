@@ -7,27 +7,47 @@ const addOns = [
   {
     name: "B Bundle (B1/B6/B12)",
     price: "$50",
-    desc: "Essential B vitamins to boost energy, mood, and metabolism.",
+    desc: "A powerful trio of B vitamins designed to support energy, brain function, and nervous system health. Improves metabolism and reduces stress and fatigue.",
   },
   {
     name: "B12 Shot",
     price: "$40",
-    desc: "Pure B12 for lasting energy and improved focus. Discount: 3× weekly for $75.",
+    desc: "Boost your energy, mood, and metabolism with a quick B12 injection. Supports red blood cell production and focus.",
   },
   {
-    name: "Toradol (Ketorolac)",
-    price: "$40",
-    desc: "Fast-acting anti-inflammatory pain relief for headaches and body aches.",
+    name: "Biotin Injection",
+    price: "$30",
+    desc: "Support healthy hair, skin, and nails with a quick Biotin boost. Helps improve energy metabolism and supports nervous system function.",
   },
   {
-    name: "Zofran (Ondansetron)",
+    name: "Toradol Injection / IV Push",
     price: "$40",
-    desc: "Powerful anti-nausea support for hangovers, migraines, or recovery.",
+    desc: "Fast-acting anti-inflammatory that helps relieve headaches, body aches, and pain. Ideal for migraines, soreness, or post-event recovery.",
   },
   {
-    name: "Vitamin D",
+    name: "Zofran Injection / IV Push",
     price: "$40",
-    desc: "Supports immune health, mood balance, and bone strength. 8-week bundle: $300.",
+    desc: "A quick solution for nausea and upset stomach. Relieves symptoms from motion sickness, hangovers, or stomach flu.",
+  },
+  {
+    name: "Vitamin D Injection",
+    price: "$40",
+    desc: "Support bone strength, immune function, and mood with a concentrated dose of Vitamin D. Perfect during low-sunlight seasons.",
+  },
+  {
+    name: "NAD+ 50mg Injection",
+    price: "$70",
+    desc: "A quick NAD⁺ booster to support energy, mood, and mental sharpness. Great between infusions or for ongoing wellness support.",
+  },
+  {
+    name: "NAD+ 100mg Injection",
+    price: "$90",
+    desc: "A slightly stronger NAD⁺ dose that enhances stamina, supports cellular repair, and promotes clarity and focus.",
+  },
+  {
+    name: "NAD+ 200mg Injection",
+    price: "$130",
+    desc: "A powerful NAD⁺ dose to restore cellular energy, sharpen focus, and combat fatigue — ideal for fast, effective vitality support.",
   },
 ];
 
@@ -44,7 +64,7 @@ export default function AddOns() {
           className="flex items-end justify-between gap-6 flex-wrap"
         >
           <h2 className="section-title font-playfair text-4xl md:text-5xl text-white">
-            Add-Ons
+            Shot Bar - Injections
           </h2>
           <a href="/book" className="btn-gold text-ink font-[var(--font-inter)]">
             Book a Session
