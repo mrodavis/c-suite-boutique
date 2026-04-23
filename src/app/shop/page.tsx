@@ -31,7 +31,7 @@ export default function ShopPage() {
       <CartDrawer />
       <main className="min-h-screen bg-gradient-to-b from-[#0e0f11] to-charcoal text-white">
         {/* Hero strip */}
-        <section className="pt-32 pb-12 px-4">
+        <div className="pt-32 pb-12 px-4">
           <div className="container">
             <Link
               href="/#wellness-shop"
@@ -68,10 +68,10 @@ export default function ShopPage() {
               ))}
             </div>
           </div>
-        </section>
+        </div>
 
         {/* Product grid */}
-        <section className="pb-24 px-4">
+        <div className="pb-24 px-4">
           <div className="container">
             <motion.div
               className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
@@ -84,7 +84,7 @@ export default function ShopPage() {
               ))}
             </motion.div>
           </div>
-        </section>
+        </div>
       </main>
     </>
   );
