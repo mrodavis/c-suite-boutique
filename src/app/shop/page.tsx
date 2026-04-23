@@ -79,8 +79,8 @@ export default function ShopPage() {
               animate="visible"
               variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
             >
-              {filtered.map((product, i) => (
-                <ShopProductCard key={product.id} product={product} index={i} />
+              {filtered.map((product) => (
+                <ShopProductCard key={product.id} product={product} />
               ))}
             </motion.div>
           </div>
@@ -90,7 +90,7 @@ export default function ShopPage() {
   );
 }
 
-function ShopProductCard({ product, index }: { product: Product; index: number }) {
+function ShopProductCard({ product }: { product: Product }) {
   const { addItem } = useCart();
   const [added, setAdded] = useState(false);
 
