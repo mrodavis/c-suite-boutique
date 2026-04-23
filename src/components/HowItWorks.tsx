@@ -2,12 +2,14 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ClipboardCheck, Syringe, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { ReactNode } from "react";
 
 interface Step {
   icon: ReactNode;
   title: string;
   desc: string;
+  image: string;
 }
 
 interface InteractiveStepProps extends Step {
@@ -20,21 +22,24 @@ const steps: Step[] = [
     icon: <ClipboardCheck className="h-7 w-7 text-teal-300" />,
     title: "Book Your Session",
     desc: "Schedule online or call our concierge to reserve your IV drip.",
+    image: "/images/how-it-works/book-session.png",
   },
   {
     icon: <Syringe className="h-7 w-7 text-teal-300" />,
-    title: "Arrive & Relax",
-    desc: "Get comfortable in our serene environment while our nurses prep your IV.",
+    title: "We Come to You",
+    desc: "Our nurses travel to your location — home, office, or event — and prep your IV on-site.",
+    image: "/images/how-it-works/we-come-to-you.png",
   },
   {
     icon: <Sparkles className="h-7 w-7 text-teal-300" />,
     title: "Replenish & Renew",
     desc: "Enjoy the boost — hydration, vitamins, and balance delivered directly to your body.",
+    image: "/images/how-it-works/replenish-renew.png",
   },
 ];
 
 // ✨ 3D Interactive Card Component
-function InteractiveStep({ icon, title, desc, index }: InteractiveStepProps) {
+function InteractiveStep({ icon, title, desc, image, index }: InteractiveStepProps) {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15 });
@@ -70,6 +75,9 @@ function InteractiveStep({ icon, title, desc, index }: InteractiveStepProps) {
                  hover:border-teal-400/20 hover:shadow-[0_0_40px_rgba(20,200,180,0.25)]
                  transition-all duration-500 ease-out transform-gpu will-change-transform"
     >
+      <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-5">
+        <Image src={image} alt={title} fill className="object-cover" />
+      </div>
       <div className="mb-4 flex items-center justify-center h-12 w-12 rounded-full bg-teal-400/10 hover:bg-teal-400/20 transition-colors duration-300">
         {icon}
       </div>
