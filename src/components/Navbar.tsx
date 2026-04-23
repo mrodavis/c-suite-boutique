@@ -1,8 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu } from "lucide-react";
+import { Menu, ShoppingBag } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 
 const navLinks = [
   { href: "/#home", label: "Home" },
@@ -17,6 +19,7 @@ const navLinks = [
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const { totalItems, openDrawer } = useCart();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -38,9 +41,11 @@ export default function Navbar() {
         <Link href="/#home" className="flex items-center gap-3">
         <div className="relative flex items-center justify-center">
         <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-400/40 via-yellow-300/30 to-amber-500/40 blur-lg opacity-60 animate-pulse-slow"></div>
-        <img
+        <Image
             src="/refresh-logo.svg"
             alt="Refresh-IV Taci Logo"
+            width={40}
+            height={40}
             className="relative h-10 w-auto z-10 drop-shadow-[0_0_4px_rgba(255,215,0,0.3)]"
         />
         </div>
@@ -61,19 +66,48 @@ export default function Navbar() {
               {i.label}
             </a>
           ))}
+          {/* Cart icon */}
+          <button
+            onClick={openDrawer}
+            className="relative p-2 text-white/70 hover:text-white transition-colors"
+            aria-label="Open cart"
+          >
+            <ShoppingBag size={22} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-yellow-400 text-ink
+                               text-[10px] font-bold flex items-center justify-center leading-none">
+                {totalItems > 9 ? "9+" : totalItems}
+              </span>
+            )}
+          </button>
           <a href="/book" className="btn-gold text-sm text-ink">
             Book Now
           </a>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
-        >
-          <Menu color="white" />
-        </button>
+        {/* Mobile: cart + toggle */}
+        <div className="md:hidden flex items-center gap-2">
+          <button
+            onClick={openDrawer}
+            className="relative p-2 text-white/70 hover:text-white transition-colors"
+            aria-label="Open cart"
+          >
+            <ShoppingBag size={20} />
+            {totalItems > 0 && (
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-yellow-400 text-ink
+                               text-[9px] font-bold flex items-center justify-center leading-none">
+                {totalItems > 9 ? "9+" : totalItems}
+              </span>
+            )}
+          </button>
+          <button
+            className="p-2"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+          >
+            <Menu color="white" />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile dropdown */}

@@ -1,59 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-
-const products = [
-  {
-    name: "Sea Moss Tea – Immunity Boost",
-    price: "$20",
-    desc: "Supports immune health and hormone balance. With sea moss, elderberry, ginger, and cinnamon.",
-    color: "text-gold",
-    image: "/images/wellness/sea-moss-tea-immunity-boost.png",
-  },
-  {
-    name: "Sea Moss Tea – Hormone Balance",
-    price: "$20",
-    desc: "Supports women’s health and hormonal balance. Includes red raspberry leaf, maca root, and rose petals.",
-    color: "text-pink-400",
-    image: "/images/wellness/sea-moss-tea-hormone-balance.png",
-  },
-  {
-    name: "Sea Moss Tea – Sexual Vitality",
-    price: "$20",
-    desc: "Enhances libido, stamina, and hormonal harmony. Infused with maca root, damiana, tribulus, and cinnamon.",
-    color: "text-rose-400",
-    image: "/images/wellness/sea-moss-tea-sexual-vitality.png",
-  },
-  {
-    name: "Sea Moss Tea – Detox + Anti-Inflammatory",
-    price: "$20",
-    desc: "Promotes liver health and reduces inflammation. Contains burdock root, turmeric, and lemon peel.",
-    color: "text-emerald-400",
-    image: "/images/wellness/sea-moss-tea-detox-anti-inflammatory.png",
-  },
-  {
-    name: "Sea Moss Gel – Elderberry & Coconut",
-    price: "$30",
-    desc: "Irish sea moss blended with elderberry, flaxseed, and coconut for daily nourishment and vitality.",
-    color: "text-gold",
-    image: "/images/wellness/sea-moss-gel-elderberry-coconut.png",
-  },
-  {
-    name: "Libido & Vitality Daily Packs",
-    price: "$40",
-    desc: "30-day supplement for stamina and hormone balance. Each pack contains 7 essential capsules.",
-    color: "text-gold",
-    image: "/images/wellness/libido-vitality-daily-packs.png",
-  },
-  {
-    name: "Hormone & Vitality Support",
-    price: "$40",
-    desc: "Vitamin D, Saw Palmetto, and Inositol for balance and wellness. 30 daily packs included.",
-    color: "text-gold",
-    image: "/images/wellness/hormone-vitality-support.png",
-  },
-];
+import { ShoppingCart } from "lucide-react";
+import { wellnessProducts, Product } from "@/lib/products";
+import { useCart } from "@/context/CartContext";
 
 export default function WellnessShop() {
   return (
@@ -75,9 +28,9 @@ export default function WellnessShop() {
               Wellness Shop
             </h2>
           </div>
-          <a href="/shop" className="btn-gold text-ink font-[var(--font-inter)]">
+          <Link href="/shop" className="btn-gold text-ink font-[var(--font-inter)]">
             View All Products
-          </a>
+          </Link>
         </motion.div>
 
         {/* Product Grid */}
@@ -87,8 +40,8 @@ export default function WellnessShop() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          {products.map((p, i) => (
-            <ProductCard key={p.name} index={i} {...p} />
+          {wellnessProducts.map((p, i) => (
+            <ProductCard key={p.id} index={i} product={p} />
           ))}
         </motion.div>
       </div>
@@ -96,22 +49,10 @@ export default function WellnessShop() {
   );
 }
 
-/* ✨ Floating & Fade-Up Product Card */
-function ProductCard({
-  name,
-  desc,
-  price,
-  index,
-  color,
-  image,
-}: {
-  name: string;
-  desc: string;
-  price: string;
-  index: number;
-  color: string;
-  image?: string;
-}) {
+function ProductCard({ product, index }: { product: Product; index: number }) {
+  const { addItem } = useCart();
+  const [added, setAdded] = useState(false);
+
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const springX = useSpring(x, { stiffness: 150, damping: 15 });
@@ -122,16 +63,17 @@ function ProductCard({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left - rect.width / 2;
-    const offsetY = e.clientY - rect.top - rect.height / 2;
-    x.set(offsetX);
-    y.set(offsetY);
+    x.set(e.clientX - rect.left - rect.width / 2);
+    y.set(e.clientY - rect.top - rect.height / 2);
   };
 
-  const resetTilt = () => {
-    x.set(0);
-    y.set(0);
-  };
+  const resetTilt = () => { x.set(0); y.set(0); };
+
+  function handleAdd() {
+    addItem(product);
+    setAdded(true);
+    setTimeout(() => setAdded(false), 1500);
+  }
 
   return (
     <motion.div
@@ -140,28 +82,36 @@ function ProductCard({
       onMouseLeave={resetTilt}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.7,
-        ease: "easeOut",
-        delay: index * 0.15,
-      }}
+      transition={{ duration: 0.7, ease: "easeOut", delay: index * 0.15 }}
       viewport={{ once: true }}
       className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md p-6 cursor-pointer
                  hover:border-gold/30 hover:shadow-[0_0_45px_rgba(255,215,0,0.15)]
-                 transition-all duration-300 ease-out transform-gpu will-change-transform"
+                 transition-all duration-300 ease-out transform-gpu will-change-transform
+                 flex flex-col"
     >
-      {image && (
+      {product.image && (
         <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4">
-          <Image src={image} alt={name} fill className="object-cover" />
+          <Image src={product.image} alt={product.name} fill className="object-cover" />
         </div>
       )}
-      <h3
-        className={`text-xl font-semibold font-[var(--font-inter)] mb-2 ${color}`}
-      >
-        {name}
+      <h3 className={`text-xl font-semibold font-[var(--font-inter)] mb-2 ${product.color}`}>
+        {product.name}
       </h3>
-      <p className="text-white/70 text-sm leading-relaxed">{desc}</p>
-      <div className="mt-4 font-bold price-shimmer">{price}</div>
+      <p className="text-white/70 text-sm leading-relaxed flex-1">{product.desc}</p>
+      <div className="mt-4 flex items-center justify-between">
+        <span className="font-bold price-shimmer">{product.priceLabel}</span>
+        <button
+          onClick={handleAdd}
+          className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold transition-all duration-300 ${
+            added
+              ? "bg-emerald-500/20 border border-emerald-400/40 text-emerald-400"
+              : "btn-gold text-ink"
+          }`}
+        >
+          <ShoppingCart size={13} />
+          {added ? "Added!" : "Add to Cart"}
+        </button>
+      </div>
     </motion.div>
   );
 }
