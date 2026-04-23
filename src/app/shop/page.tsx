@@ -8,7 +8,6 @@ import { ShoppingCart, ArrowLeft } from "lucide-react";
 import { wellnessProducts, Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
-import CartDrawer from "@/components/CartDrawer";
 
 const CATEGORIES = [
   { value: "all", label: "All Products" },
@@ -28,7 +27,6 @@ export default function ShopPage() {
   return (
     <>
       <Navbar />
-      <CartDrawer />
       <main className="min-h-screen bg-gradient-to-b from-[#0e0f11] to-charcoal text-white">
         {/* Hero strip */}
         <div className="pt-32 pb-12 px-4">

@@ -4,13 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import CartDrawer from "@/components/CartDrawer";
 
 export default function AboutContent() {
   return (
     <main className="bg-[#0e0f11] text-white min-h-screen overflow-hidden">
       <Navbar />
-      <CartDrawer />
 
       {/* Hero */}
       <div className="relative py-28 md:py-36 bg-[radial-gradient(circle_at_top,_rgba(20,150,140,0.25),_transparent_70%)] text-center overflow-hidden">

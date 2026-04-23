@@ -7,7 +7,6 @@ import { motion } from "framer-motion";
 import { ArrowLeft, Clock, ShieldCheck } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
-import CartDrawer from "@/components/CartDrawer";
 
 interface FormData {
   firstName: string;
@@ -45,7 +44,6 @@ export default function CheckoutPage() {
     return (
       <>
         <Navbar />
-        <CartDrawer />
         <main className="min-h-screen bg-[#0e0f11] text-white flex items-center justify-center px-4">
           <div className="text-center space-y-6">
             <h1 className="text-3xl font-playfair text-shimmer-gold">Your cart is empty</h1>
@@ -62,7 +60,6 @@ export default function CheckoutPage() {
   return (
     <>
       <Navbar />
-      <CartDrawer />
       <main className="min-h-screen bg-gradient-to-b from-[#0e0f11] to-charcoal text-white">
         <div className="container py-32 px-4">
           <Link

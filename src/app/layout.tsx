@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
+import CartDrawer from "@/components/CartDrawer";
 
 
 const inter = Inter({
@@ -30,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </head>
       <body className="bg-charcoal selection:bg-teal-500/30 selection:text-white">
         <CartProvider>
+          <CartDrawer />
           <main>{children}</main>
         </CartProvider>
       </body>
