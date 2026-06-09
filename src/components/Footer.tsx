@@ -8,9 +8,9 @@ const footerColumns = [
     heading: "Shop",
     links: [
       { label: "Skin Lightening Cream", href: "/shop" },
-      { label: "Serums",                href: "/shop" },
-      { label: "Wellness",              href: "/shop" },
-      { label: "View All Products",     href: "/shop" },
+      { label: "Serums",               href: "/shop" },
+      { label: "Beauty Kits",          href: "/shop" },
+      { label: "View All Products",    href: "/shop" },
     ],
   },
   {

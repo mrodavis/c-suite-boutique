@@ -34,7 +34,7 @@ export default function WellnessShop() {
             >
               Curated for You
             </p>
-            <h2 className="section-title">Beauty &amp; Wellness</h2>
+            <h2 className="section-title">Beauty Collection</h2>
           </div>
           <Link href="/shop" className="btn-gold text-sm px-6 py-2.5">
             View All Products

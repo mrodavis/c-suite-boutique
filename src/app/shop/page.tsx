@@ -12,11 +12,10 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 
 const CATEGORIES = [
-  { value: "all",       label: "All Products" },
-  { value: "cream",     label: "Creams" },
-  { value: "serum",     label: "Serums" },
-  { value: "kit",       label: "Beauty Kits" },
-  { value: "wellness",  label: "Wellness" },
+  { value: "all",   label: "All Products" },
+  { value: "cream", label: "Creams" },
+  { value: "serum", label: "Serums" },
+  { value: "kit",   label: "Beauty Kits" },
 ] as const;
 
 export default function ShopPage() {
@@ -66,7 +65,7 @@ export default function ShopPage() {
                 className="mt-4 max-w-xl mx-auto text-base leading-relaxed"
                 style={{ color: "rgba(58,45,45,0.62)" }}
               >
-                Luxury skincare and wellness products curated for the woman who leads.
+                Luxury skincare curated for the woman who leads.
               </p>
             </motion.div>
 
