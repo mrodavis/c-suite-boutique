@@ -1,88 +1,141 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   return (
     <section
       id="contact"
-      className="relative bg-gradient-to-b from-[#0e0f11] via-charcoal to-[#0e0f11] text-white py-24 md:py-32"
+      className="section"
+      style={{ background: "linear-gradient(135deg,#FAF7F2 0%,#FFFFFF 100%)" }}
     >
-      {/* 👇 Add suppressHydrationWarning */}
-      <div suppressHydrationWarning className="container grid gap-10 md:grid-cols-2 px-6 md:px-12">
-        {/* Left side — Heading & Info */}
+      <div className="container grid gap-12 md:grid-cols-2 px-6 md:px-12 items-start">
+
+        {/* Left: Heading & Info */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl md:text-5xl font-playfair leading-tight">
-            Ready to <span className="text-shimmer-gold">Feel Your Best?</span>
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.25em] mb-3"
+            style={{ color: "#E88C9A" }}
+          >
+            Get in Touch
+          </p>
+          <h2 className="section-title mb-6">
+            Ready to Glow?
           </h2>
-
-          {/* ✨ Gold Accent Line */}
-          <div className="mt-4 h-[2px] w-24 bg-gradient-to-r from-amber-400 to-amber-200 rounded-full shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
-
-          <p className="text-white/70 mt-6 leading-relaxed max-w-md">
-            Call, text, or request a time and our team will confirm your appointment.
-            Hydrate, restore, and thrive — your wellness journey starts today.
+          <p
+            className="leading-relaxed max-w-sm mb-8"
+            style={{ color: "rgba(58,45,45,0.65)", fontSize: "0.95rem" }}
+          >
+            Questions about your order, skincare advice, or wholesale inquiries?
+            Our team is here to help. Reach out — we&apos;d love to hear from you.
           </p>
 
-          <div className="mt-8 space-y-3">
+          <div className="space-y-4">
             <a
-              href="tel:+15165408586"
-              className="block text-lg hover:text-teal-300 transition-colors"
+              href="mailto:hello@csuitebeautyboutique.com"
+              className="flex items-center gap-3 text-sm transition-colors hover:text-gold-500"
+              style={{ color: "rgba(58,45,45,0.75)" }}
             >
-              📞 (516) 540-8586
+              <div
+                className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: "rgba(201,161,93,0.10)", border: "1px solid rgba(201,161,93,0.20)" }}
+              >
+                <Mail size={15} style={{ color: "#C9A15D" }} />
+              </div>
+              hello@csuitebeautyboutique.com
             </a>
             <a
-              href="mailto:refreshivtaci@gmail.com"
-              className="block text-lg hover:text-teal-300 transition-colors"
+              href="tel:+15165408586"
+              className="flex items-center gap-3 text-sm transition-colors hover:text-gold-500"
+              style={{ color: "rgba(58,45,45,0.75)" }}
             >
-              ✉️ hello@therefresh-iv.com
+              <div
+                className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{ background: "rgba(201,161,93,0.10)", border: "1px solid rgba(201,161,93,0.20)" }}
+              >
+                <Phone size={15} style={{ color: "#C9A15D" }} />
+              </div>
+              (516) 540-8586
             </a>
           </div>
         </motion.div>
 
-        {/* Right side — Contact Form */}
+        {/* Right: Contact Form */}
         <motion.form
           onSubmit={(e) => e.preventDefault()}
-          className="rounded-2xl border border-white/10 bg-ink/80 backdrop-blur-sm p-8 grid gap-4 shadow-[0_0_25px_rgba(0,0,0,0.2)]"
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.15 }}
+          className="rounded-2xl p-8 grid gap-4"
+          style={{
+            background: "#FFFFFF",
+            border: "1px solid rgba(58,45,45,0.08)",
+            boxShadow: "0 4px 24px rgba(58,45,45,0.08)",
+          }}
         >
           <input
-            className="rounded-lg bg-charcoal/70 p-3 outline-none focus:ring-2 focus:ring-teal-400/50 placeholder-white/40 transition-all duration-300"
+            className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
             placeholder="Full name"
+            style={{
+              background: "#FAF7F2",
+              border: "1px solid rgba(58,45,45,0.12)",
+              color: "#3A2D2D",
+            }}
+            onFocus={(e) => (e.target.style.borderColor = "#C9A15D")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(58,45,45,0.12)")}
           />
           <input
-            className="rounded-lg bg-charcoal/70 p-3 outline-none focus:ring-2 focus:ring-teal-400/50 placeholder-white/40 transition-all duration-300"
-            placeholder="Email"
             type="email"
+            className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
+            placeholder="Email address"
+            style={{
+              background: "#FAF7F2",
+              border: "1px solid rgba(58,45,45,0.12)",
+              color: "#3A2D2D",
+            }}
+            onFocus={(e) => (e.target.style.borderColor = "#C9A15D")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(58,45,45,0.12)")}
           />
           <input
-            className="rounded-lg bg-charcoal/70 p-3 outline-none focus:ring-2 focus:ring-teal-400/50 placeholder-white/40 transition-all duration-300"
-            placeholder="Phone"
+            type="tel"
+            className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
+            placeholder="Phone (optional)"
+            style={{
+              background: "#FAF7F2",
+              border: "1px solid rgba(58,45,45,0.12)",
+              color: "#3A2D2D",
+            }}
+            onFocus={(e) => (e.target.style.borderColor = "#C9A15D")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(58,45,45,0.12)")}
           />
           <textarea
-            className="rounded-lg bg-charcoal/70 p-3 h-28 outline-none focus:ring-2 focus:ring-teal-400/50 placeholder-white/40 transition-all duration-300"
+            className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all resize-none h-28"
             placeholder="How can we help?"
-          ></textarea>
+            style={{
+              background: "#FAF7F2",
+              border: "1px solid rgba(58,45,45,0.12)",
+              color: "#3A2D2D",
+            }}
+            onFocus={(e) => (e.target.style.borderColor = "#C9A15D")}
+            onBlur={(e) => (e.target.style.borderColor = "rgba(58,45,45,0.12)")}
+          />
           <motion.button
-            whileHover={{ scale: 1.03 }}
+            type="submit"
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
-            className="btn-gold text-ink font-semibold"
+            className="btn-primary w-full"
           >
-            Request Booking
+            Send Message
           </motion.button>
         </motion.form>
       </div>
-
-      {/* Optional background glow */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(35,174,204,0.15)_0%,rgba(14,15,17,0)_80%)]"></div>
     </section>
   );
 }

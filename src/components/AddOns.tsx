@@ -1,188 +1,205 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { Crown, FlaskConical, Heart } from "lucide-react";
 import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
-// 💧 Official Refresh-IV.Taci Add-Ons
-const addOns = [
+const pillars = [
   {
-    name: "B Bundle (B1/B6/B12)",
-    price: "$50",
-    desc: "A powerful trio of B vitamins designed to support energy, brain function, and nervous system health. Improves metabolism and reduces stress and fatigue.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/13",
-    image: "/images/injections/b-bundle.jpeg",
+    icon: <Crown size={22} strokeWidth={1.5} style={{ color: "#C9A15D" }} />,
+    title: "Premium Quality",
+    desc: "Only the finest ingredients for exceptional results.",
   },
   {
-    name: "B12 Shot",
-    price: "$40",
-    desc: "Boost your energy, mood, and metabolism with a quick B12 injection. Supports red blood cell production and focus.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/14",
-    image: "/images/injections/b12-shot.png",
+    icon: <FlaskConical size={22} strokeWidth={1.5} style={{ color: "#C9A15D" }} />,
+    title: "Backed by Science",
+    desc: "Advanced formulations created for real results.",
   },
   {
-    name: "Biotin Injection",
-    price: "$30",
-    desc: "Support healthy hair, skin, and nails with a quick Biotin boost. Helps improve energy metabolism and supports nervous system function.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/15",
-    image: "/images/injections/biotin-injection.png",
-  },
-  {
-    name: "Toradol Injection / IV Push",
-    price: "$40",
-    desc: "Fast-acting anti-inflammatory that helps relieve headaches, body aches, and pain. Ideal for migraines, soreness, or post-event recovery.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/16",
-    image: "/images/injections/toradol-injection.png",
-  },
-  {
-    name: "Zofran Injection / IV Push",
-    price: "$40",
-    desc: "A quick solution for nausea and upset stomach. Relieves symptoms from motion sickness, hangovers, or stomach flu.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/17",
-    image: "/images/injections/zofran-injection.png",
-  },
-  {
-    name: "Vitamin D Injection",
-    price: "$40",
-    desc: "Support bone strength, immune function, and mood with a concentrated dose of Vitamin D. Perfect during low-sunlight seasons.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/18",
-    image: "/images/injections/vitamin-d-injection.png",
-  },
-  {
-    name: "NAD+ 50mg Injection",
-    price: "$70",
-    desc: "A quick NAD⁺ booster to support energy, mood, and mental sharpness. Great between infusions or for ongoing wellness support.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/19",
-    image: "/images/injections/nad-50mg-injection.png",
-  },
-  {
-    name: "NAD+ 100mg Injection",
-    price: "$90",
-    desc: "A slightly stronger NAD⁺ dose that enhances stamina, supports cellular repair, and promotes clarity and focus.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/20",
-    image: "/images/injections/nad-100mg-injection.png",
-  },
-  {
-    name: "NAD+ 200mg Injection",
-    price: "$130",
-    desc: "A powerful NAD⁺ dose to restore cellular energy, sharpen focus, and combat fatigue — ideal for fast, effective vitality support.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/21",
-    image: "/images/injections/nad-200mg-injection.png",
+    icon: <Heart size={22} strokeWidth={1.5} style={{ color: "#C9A15D" }} />,
+    title: "Made for You",
+    desc: "Skincare solutions that celebrate your unique beauty.",
   },
 ];
 
 export default function AddOns() {
   return (
-    <section id="add-ons" className="section bg-charcoal">
-      <div className="container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="flex items-end justify-between gap-6 flex-wrap"
-        >
-          <h2 className="section-title font-playfair text-4xl md:text-5xl text-white">
-            Shot Bar – Injections
-          </h2>
-          <a href="/book" className="btn-gold text-ink font-[var(--font-inter)]">
-            Book a Session
-          </a>
-        </motion.div>
+    <section
+      id="founder"
+      className="section relative overflow-hidden"
+      style={{ background: "linear-gradient(135deg,#2C2020 0%,#3A2D2D 100%)" }}
+    >
+      {/* Gold shimmer line at top */}
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(90deg,transparent,rgba(201,161,93,0.6),transparent)" }}
+      />
 
-        {/* Cards Grid */}
-        <motion.div
-          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ staggerChildren: 0.2 }}
-        >
-          {addOns.map((a, i) => (
-            <InteractiveCard key={a.name} index={i} {...a} />
-          ))}
-        </motion.div>
+      <div className="container relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center">
+
+          {/* Left: Portrait */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9 }}
+            className="flex justify-center"
+          >
+            <div
+              className="relative w-64 h-80 md:w-72 md:h-96 rounded-2xl overflow-hidden"
+              style={{
+                boxShadow: "0 24px 60px rgba(0,0,0,0.35)",
+                border: "1px solid rgba(201,161,93,0.20)",
+              }}
+            >
+              <div
+                className="w-full h-full flex items-end justify-center pb-8"
+                style={{
+                  background:
+                    "linear-gradient(160deg,#4A3535 0%,#3A2D2D 50%,#2C2020 100%)",
+                }}
+              >
+                {/* Placeholder silhouette */}
+                <div className="text-center">
+                  <div
+                    className="w-20 h-20 rounded-full mx-auto mb-3 flex items-center justify-center"
+                    style={{
+                      background: "linear-gradient(135deg,rgba(201,161,93,0.25),rgba(201,161,93,0.10))",
+                      border: "1px solid rgba(201,161,93,0.25)",
+                    }}
+                  >
+                    <span style={{ fontSize: "2rem" }}>✦</span>
+                  </div>
+                  <p
+                    className="font-script text-2xl"
+                    style={{ color: "rgba(201,161,93,0.7)" }}
+                  >
+                    Cynthia
+                  </p>
+                </div>
+              </div>
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background:
+                    "linear-gradient(to top,rgba(44,32,32,0.4) 0%,transparent 50%)",
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Center: Quote */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-center lg:text-left"
+          >
+            <h2
+              className="font-playfair font-bold leading-tight mb-2"
+              style={{ fontSize: "clamp(1.8rem,4vw,2.8rem)", color: "#FAF7F2" }}
+            >
+              Beauty Is Power.
+            </h2>
+            <p
+              className="font-script leading-none mb-6"
+              style={{ fontSize: "clamp(2rem,5vw,3rem)", color: "#C9A15D" }}
+            >
+              Own It.
+            </p>
+
+            <div
+              className="w-12 h-px mb-6 mx-auto lg:mx-0"
+              style={{ background: "linear-gradient(90deg,#C9A15D,#E8C766)" }}
+            />
+
+            <p
+              className="text-base leading-relaxed mb-8 max-w-sm mx-auto lg:mx-0"
+              style={{ color: "rgba(250,247,242,0.72)" }}
+            >
+              At C-Suite Beauty Boutique, we believe skincare should empower
+              confidence and self-care. Because when your skin glows, you lead
+              with confidence.
+            </p>
+
+            {/* Signature */}
+            <div>
+              <p
+                className="font-script text-3xl"
+                style={{ color: "#C9A15D" }}
+              >
+                C-Suite
+              </p>
+              <p
+                className="font-inter text-xs uppercase tracking-[0.25em] mt-1"
+                style={{ color: "rgba(250,247,242,0.50)" }}
+              >
+                Founder &amp; CEO
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Right: Pillars */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="space-y-6"
+          >
+            {pillars.map((p, i) => (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.4 + i * 0.15 }}
+                className="flex items-start gap-4"
+              >
+                <div
+                  className="flex items-center justify-center w-11 h-11 rounded-full flex-shrink-0"
+                  style={{
+                    border: "1px solid rgba(201,161,93,0.30)",
+                    background: "rgba(201,161,93,0.08)",
+                  }}
+                >
+                  {p.icon}
+                </div>
+                <div>
+                  <p
+                    className="font-semibold text-sm mb-1 uppercase tracking-[0.12em]"
+                    style={{ color: "#FAF7F2" }}
+                  >
+                    {p.title}
+                  </p>
+                  <p className="text-sm leading-relaxed" style={{ color: "rgba(250,247,242,0.55)" }}>
+                    {p.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+        </div>
+      </div>
+
+      {/* Bottom trust strip */}
+      <div
+        className="absolute bottom-0 left-0 right-0 py-3 border-t"
+        style={{ borderColor: "rgba(201,161,93,0.15)", background: "rgba(0,0,0,0.20)" }}
+      >
+        <div className="container">
+          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-xs uppercase tracking-[0.18em]"
+            style={{ color: "rgba(250,247,242,0.45)" }}
+          >
+            {["Secure Payment", "100% Authentic", "Satisfaction Guaranteed", "Worldwide Shipping"].map((t) => (
+              <span key={t}>{t}</span>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
-  );
-}
-
-/* ✨ Interactive Add-On Card */
-function InteractiveCard({
-  name,
-  desc,
-  price,
-  index,
-  link,
-  image,
-}: {
-  name: string;
-  desc: string;
-  price: string;
-  index: number;
-  link?: string;
-  image?: string;
-}) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 15 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15 });
-
-  const rotateX = useTransform(springY, [-50, 50], [15, -15]);
-  const rotateY = useTransform(springX, [-50, 50], [-15, 15]);
-
-  const handleMouseMove = (
-    e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>
-  ) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left - rect.width / 2;
-    const offsetY = e.clientY - rect.top - rect.height / 2;
-    x.set(offsetX);
-    y.set(offsetY);
-  };
-
-  const resetTilt = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.a
-      href={link || "#"}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetTilt}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      animate={{
-        y: [0, -8, 0],
-        transition: {
-          duration: 6,
-          ease: "easeInOut",
-          repeat: Infinity,
-          delay: index * 0.3,
-        },
-      }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="rounded-2xl border border-white/10 bg-ink/80 backdrop-blur-sm p-6 cursor-pointer
-                 hover:border-gold/30 hover:shadow-[0_0_45px_rgba(255,215,0,0.15)] 
-                 transition-all duration-300 ease-out transform-gpu will-change-transform block"
-    >
-      {image && (
-        <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4">
-          <Image src={image} alt={name} fill className="object-cover" />
-        </div>
-      )}
-      <h3 className="text-xl font-semibold text-white font-[var(--font-inter)]">{name}</h3>
-      <p className="text-white/70 mt-2 text-sm leading-relaxed">{desc}</p>
-      <div className="mt-4 font-bold text-gold price-shimmer">{price}</div>
-    </motion.a>
   );
 }

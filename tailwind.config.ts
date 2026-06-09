@@ -10,41 +10,57 @@ const config: Config = {
     container: { center: true, padding: "1rem" },
     extend: {
       colors: {
-        charcoal: "#0E0F11",
-        ink: "#111319",
-        teal: {
-          50:  "#E6FBFF",
-          100: "#C9F5FA",
-          200: "#9FE7F1",
-          300: "#6FD5E7",
-          400: "#48C3DA",
-          500: "#23AECC", // primary accent
-          600: "#1A8CA6",
-          700: "#146D83",
-          800: "#0E4B59",
-          900: "#09343E",
-        },
+        // C-Suite Brand Palette
         gold: {
-          50:  "#FFF8E6",
-          100: "#FCEEC2",
-          200: "#F7DB84",
-          300: "#F2C64B",
-          400: "#E9B530",
-          500: "#D7A21A", // used for text hover accents
-          600: "#C18E12",
-          700: "#A4720C",
-          800: "#7D5609",
-          900: "#5A3E06",
+          50:  "#FBF5E6",
+          100: "#F6E8C3",
+          200: "#EDD289",
+          300: "#E2BC58",
+          400: "#D4A84B",
+          500: "#C9A15D", // Primary Gold
+          600: "#B68840",
+          700: "#966E2D",
+          800: "#76551F",
+          900: "#563D14",
         },
+        blush: {
+          50:  "#FFF5F5",
+          100: "#FFE8E8",
+          200: "#F5D6D6", // Soft Blush
+          300: "#EDB8B8",
+          400: "#E88C9A", // Rose Accent
+          500: "#D97080",
+          600: "#C4556A",
+          700: "#A33D52",
+          800: "#82293C",
+          900: "#601727",
+        },
+        cream: {
+          50:  "#FFFDFB", // Page Background
+          100: "#FAF7F2", // Ivory
+          200: "#F6EFE8", // Warm Cream
+          300: "#EDE3D8",
+          400: "#DED0BE",
+          500: "#CEBDA4",
+          600: "#BAAD93",
+        },
+        deep: "#3A2D2D",   // Primary text
+      },
+      fontFamily: {
+        inter:    ["var(--font-inter)",    "sans-serif"],
+        playfair: ["var(--font-playfair)", "serif"],
+        script:   ["var(--font-script)",   "cursive"],
       },
       backgroundImage: {
-        "gold-gradient":
-          "linear-gradient(90deg, #F7E7A6 0%, #E8C766 30%, #D7A21A 60%, #F4D06F 100%)",
-        "teal-glow":
-          "radial-gradient(1200px 600px at 50% -200px, rgba(35,174,204,0.25), rgba(14,15,17,0))",
+        "gold-gradient":  "linear-gradient(90deg,#F7E7A6 0%,#E8C766 30%,#C9A15D 60%,#D4B96B 100%)",
+        "blush-gradient": "linear-gradient(135deg,#F5D6D6 0%,#FAF7F2 60%,#F6EFE8 100%)",
+        "hero-gradient":  "linear-gradient(135deg,#FFFDFB 0%,#FAF7F2 40%,#F5D6D6 75%,#F6EFE8 100%)",
       },
       boxShadow: {
-        soft: "0 10px 30px rgba(0,0,0,.25)",
+        soft:  "0 4px 24px rgba(58,45,45,0.10)",
+        gold:  "0 4px 24px rgba(201,161,93,0.30)",
+        blush: "0 4px 24px rgba(232,140,154,0.25)",
+        card:  "0 2px 16px rgba(58,45,45,0.08)",
       },
     },
   },

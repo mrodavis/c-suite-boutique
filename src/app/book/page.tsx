@@ -1,67 +1,88 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import Navbar from "@/components/Navbar";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import Footer from "@/components/Footer";
+import { Camera, Sparkles, TrendingUp, ShoppingBag } from "lucide-react";
 
-export default function BookPage() {
+export default function ConsultationPage() {
   return (
-    <section className="relative bg-gradient-to-b from-[#0e0f11] via-charcoal to-[#0e0f11] text-white min-h-screen py-24 md:py-32">
+    <main style={{ backgroundColor: "#FFFDFB" }}>
+      <AnnouncementBar />
       <Navbar />
-      <div className="container mx-auto px-6 md:px-12 text-center">
-        {/* Heading */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <h1 className="text-4xl md:text-5xl font-playfair leading-tight">
-            Book Your Appointment
-          </h1>
 
-          {/* ✨ Gold accent underline */}
-          <div className="mx-auto mt-4 h-[2px] w-24 bg-gradient-to-r from-amber-400 to-amber-200 rounded-full shadow-[0_0_10px_rgba(255,215,0,0.5)]"></div>
-
-          <p className="text-white/70 mt-6 max-w-2xl mx-auto">
-            Schedule your IV drip or vitamin shot securely through our JaneApp portal.
-          </p>
-        </motion.div>
-
-        {/* Booking CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="mt-14"
-        >
-          <a
-            href="https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-gold text-ink inline-block px-10 py-4 text-lg font-semibold hover:shadow-[0_0_25px_rgba(255,215,0,0.4)] transition-all duration-500"
+      <section
+        className="min-h-screen flex items-center py-28"
+        style={{ background: "linear-gradient(135deg,#FAF7F2 0%,#FAE8E8 60%,#F6EFE8 100%)" }}
+      >
+        <div className="container mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            Launch Booking Portal
-          </a>
-
-
-
-          <p className="text-white/60 mt-6 text-sm">
-            You’ll be securely redirected to our{" "}
-            <a
-              href="https://jane.app"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-teal-300 hover:underline"
+            <p
+              className="text-xs font-semibold uppercase tracking-[0.25em] mb-4"
+              style={{ color: "#E88C9A" }}
             >
-              JaneApp
-            </a>{" "}
-            booking system.
-          </p>
-        </motion.div>
-      </div>
+              Personalized Beauty
+            </p>
+            <h1
+              className="font-playfair font-bold leading-tight mb-4"
+              style={{ fontSize: "clamp(2rem,5vw,3.2rem)", color: "#3A2D2D" }}
+            >
+              Book a Consultation
+            </h1>
+            <div
+              className="w-12 h-0.5 mx-auto mb-6"
+              style={{ background: "linear-gradient(90deg,#C9A15D,#E8C766)" }}
+            />
+            <p
+              className="text-base leading-relaxed max-w-xl mx-auto mb-10"
+              style={{ color: "rgba(58,45,45,0.65)" }}
+            >
+              Get personalized skincare guidance from our AI Beauty Consultant or
+              reach out to our team directly for product recommendations.
+            </p>
 
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link href="/ai-consultant" className="btn-gold">
+                Try AI Consultant
+              </Link>
+              <Link href="/#contact" className="btn-outline">
+                Contact Our Team
+              </Link>
+            </div>
 
-      {/* Background Glow */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(35,174,204,0.15)_0%,rgba(14,15,17,0)_80%)]"></div>
-    </section>
+            {/* Features */}
+            <div className="mt-16 grid sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-3xl mx-auto">
+              {[
+                { icon: <Camera size={20} />, label: "Skin Analysis" },
+                { icon: <Sparkles size={20} />, label: "Personalized Routine" },
+                { icon: <ShoppingBag size={20} />, label: "Product Match" },
+                { icon: <TrendingUp size={20} />, label: "Progress Tracking" },
+              ].map((f) => (
+                <div
+                  key={f.label}
+                  className="flex flex-col items-center gap-3 py-5 px-4 rounded-2xl text-sm font-medium"
+                  style={{
+                    background: "rgba(255,255,255,0.80)",
+                    border: "1px solid rgba(201,161,93,0.15)",
+                    color: "#3A2D2D",
+                  }}
+                >
+                  <span style={{ color: "#C9A15D" }}>{f.icon}</span>
+                  {f.label}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <Footer />
+    </main>
   );
 }

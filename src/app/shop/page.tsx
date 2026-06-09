@@ -4,16 +4,19 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ShoppingCart, ArrowLeft } from "lucide-react";
-import { wellnessProducts, Product } from "@/lib/products";
+import { ShoppingCart, Sparkles, ArrowLeft } from "lucide-react";
+import { allProducts, Product } from "@/lib/products";
 import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
+import AnnouncementBar from "@/components/AnnouncementBar";
+import Footer from "@/components/Footer";
 
 const CATEGORIES = [
-  { value: "all", label: "All Products" },
-  { value: "tea", label: "Sea Moss Teas" },
-  { value: "gel", label: "Sea Moss Gel" },
-  { value: "supplement", label: "Supplements" },
+  { value: "all",       label: "All Products" },
+  { value: "cream",     label: "Creams" },
+  { value: "serum",     label: "Serums" },
+  { value: "kit",       label: "Beauty Kits" },
+  { value: "wellness",  label: "Wellness" },
 ] as const;
 
 export default function ShopPage() {
@@ -21,45 +24,72 @@ export default function ShopPage() {
 
   const filtered =
     activeCategory === "all"
-      ? wellnessProducts
-      : wellnessProducts.filter((p) => p.category === activeCategory);
+      ? allProducts
+      : allProducts.filter((p) => p.category === activeCategory);
 
   return (
     <>
+      <AnnouncementBar />
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-b from-[#0e0f11] to-charcoal text-white">
-        {/* Hero strip */}
-        <div className="pt-32 pb-12 px-4">
+      <main className="min-h-screen" style={{ backgroundColor: "#FFFDFB" }}>
+
+        {/* Page header */}
+        <div
+          className="py-20 px-4 text-center"
+          style={{ background: "linear-gradient(180deg,#FAF7F2 0%,#FFFDFB 100%)" }}
+        >
           <div className="container">
             <Link
-              href="/#wellness-shop"
-              className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm mb-8 transition-colors"
+              href="/"
+              className="inline-flex items-center gap-2 text-sm mb-8 transition-colors hover:text-gold-500"
+              style={{ color: "rgba(58,45,45,0.50)" }}
             >
-              <ArrowLeft size={16} />
+              <ArrowLeft size={15} />
               Back to Home
             </Link>
+
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.7 }}
             >
-              <h1 className="section-title text-shimmer-gold">Wellness Shop</h1>
-              <p className="section-sub mt-4 text-white/60 max-w-xl">
-                Handcrafted wellness products to support your health journey — from sea moss teas to daily supplement packs.
+              <p
+                className="text-xs font-semibold uppercase tracking-[0.25em] mb-3"
+                style={{ color: "#E88C9A" }}
+              >
+                C-Suite Beauty Boutique
+              </p>
+              <h1 className="section-title mb-4" style={{ display: "inline-block" }}>
+                Shop All
+              </h1>
+              <p
+                className="mt-4 max-w-xl mx-auto text-base leading-relaxed"
+                style={{ color: "rgba(58,45,45,0.62)" }}
+              >
+                Luxury skincare and wellness products curated for the woman who leads.
               </p>
             </motion.div>
 
             {/* Filter pills */}
-            <div className="flex flex-wrap gap-3 mt-8">
+            <div className="flex flex-wrap gap-3 mt-8 justify-center">
               {CATEGORIES.map((cat) => (
                 <button
                   key={cat.value}
                   onClick={() => setActiveCategory(cat.value)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium border transition-all duration-200 ${
+                  className="px-5 py-2 rounded-full text-sm font-medium transition-all duration-200"
+                  style={
                     activeCategory === cat.value
-                      ? "btn-gold text-ink border-transparent"
-                      : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
-                  }`}
+                      ? {
+                          background: "linear-gradient(90deg,#F7E7A6,#C9A15D)",
+                          color: "#3A2D2D",
+                          border: "1px solid transparent",
+                        }
+                      : {
+                          border: "1px solid rgba(58,45,45,0.18)",
+                          color: "rgba(58,45,45,0.65)",
+                          background: "transparent",
+                        }
+                  }
                 >
                   {cat.label}
                 </button>
@@ -72,18 +102,27 @@ export default function ShopPage() {
         <div className="pb-24 px-4">
           <div className="container">
             <motion.div
-              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               initial="hidden"
               animate="visible"
-              variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+              variants={{ visible: { transition: { staggerChildren: 0.07 } } }}
             >
               {filtered.map((product) => (
                 <ShopProductCard key={product.id} product={product} />
               ))}
             </motion.div>
+
+            {filtered.length === 0 && (
+              <div className="text-center py-20">
+                <p className="text-base" style={{ color: "rgba(58,45,45,0.50)" }}>
+                  No products found in this category yet.
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }
@@ -93,50 +132,115 @@ function ShopProductCard({ product }: { product: Product }) {
   const [added, setAdded] = useState(false);
 
   function handleAdd() {
+    if (product.comingSoon) return;
     addItem(product);
     setAdded(true);
-    setTimeout(() => setAdded(false), 1500);
+    setTimeout(() => setAdded(false), 1600);
   }
 
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+        hidden:   { opacity: 0, y: 24 },
+        visible:  { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
       }}
-      className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md overflow-hidden
-                 hover:border-yellow-400/30 hover:shadow-[0_0_40px_rgba(255,215,0,0.12)]
-                 transition-all duration-300 flex flex-col"
+      className="rounded-2xl overflow-hidden flex flex-col transition-all duration-300"
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid rgba(58,45,45,0.07)",
+        boxShadow: "0 2px 12px rgba(58,45,45,0.05)",
+      }}
+      onMouseEnter={(e) => {
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 40px rgba(201,161,93,0.16)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(201,161,93,0.28)";
+      }}
+      onMouseLeave={(e) => {
+        (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 12px rgba(58,45,45,0.05)";
+        (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(58,45,45,0.07)";
+      }}
     >
-      {/* Image */}
-      <div className="relative w-full aspect-square">
-        <Image
-          src={product.image}
-          alt={product.name}
-          fill
-          className="object-cover"
-        />
+      {/* Image area */}
+      <div className="relative w-full aspect-square overflow-hidden">
+        {product.image ? (
+          <Image
+            src={product.image}
+            alt={product.name}
+            fill
+            className="object-cover transition-transform duration-500 hover:scale-105"
+          />
+        ) : (
+          <div
+            className="w-full h-full flex flex-col items-center justify-center gap-3"
+            style={{ background: "linear-gradient(135deg,#FAE8E8 0%,#FAF7F2 100%)" }}
+          >
+            <div
+              className="w-16 h-16 rounded-full flex items-center justify-center"
+              style={{ border: "1.5px solid rgba(201,161,93,0.25)" }}
+            >
+              <Sparkles size={22} style={{ color: "rgba(201,161,93,0.55)" }} />
+            </div>
+            <p
+              className="text-[9px] uppercase tracking-widest text-center px-4"
+              style={{ color: "rgba(58,45,45,0.40)" }}
+            >
+              {product.name}
+            </p>
+          </div>
+        )}
+
+        {/* Badge */}
+        {product.badge && (
+          <span
+            className="absolute top-3 left-3 text-[9px] font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full"
+            style={{
+              background: product.badge === "Signature" ? "#C9A15D" : "rgba(58,45,45,0.65)",
+              color: "#FFFDFB",
+            }}
+          >
+            {product.badge}
+          </span>
+        )}
       </div>
 
       {/* Content */}
-      <div className="p-6 flex flex-col flex-1">
-        <h3 className={`text-lg font-semibold font-[var(--font-inter)] mb-2 ${product.color}`}>
+      <div className="p-5 flex flex-col flex-1">
+        <h3
+          className="font-inter font-semibold text-sm mb-1.5 leading-snug"
+          style={{ color: "#3A2D2D" }}
+        >
           {product.name}
         </h3>
-        <p className="text-white/60 text-sm leading-relaxed flex-1">{product.desc}</p>
+        <p
+          className="text-xs leading-relaxed flex-1 mb-4"
+          style={{ color: "rgba(58,45,45,0.58)" }}
+        >
+          {product.desc}
+        </p>
 
-        <div className="flex items-center justify-between mt-5">
-          <span className="price-shimmer text-xl font-bold">{product.priceLabel}</span>
+        <div className="flex items-center justify-between mt-auto">
+          <span className="price-shimmer font-bold text-base">{product.priceLabel}</span>
           <button
             onClick={handleAdd}
-            className={`flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-300 ${
-              added
-                ? "bg-emerald-500/20 border border-emerald-400/40 text-emerald-400"
-                : "btn-gold text-ink"
+            disabled={product.comingSoon}
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
+              product.comingSoon ? "cursor-not-allowed opacity-45" : ""
             }`}
+            style={
+              product.comingSoon
+                ? { border: "1px solid rgba(58,45,45,0.15)", color: "rgba(58,45,45,0.40)" }
+                : added
+                ? { background: "rgba(16,185,129,0.10)", border: "1px solid rgba(16,185,129,0.30)", color: "#059669" }
+                : { background: "#E88C9A", color: "white" }
+            }
           >
-            <ShoppingCart size={15} />
-            {added ? "Added!" : "Add to Cart"}
+            {product.comingSoon ? (
+              "Soon"
+            ) : (
+              <>
+                <ShoppingCart size={12} />
+                {added ? "Added!" : "Add to Cart"}
+              </>
+            )}
           </button>
         </div>
       </div>

@@ -1,136 +1,161 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useEffect, useState } from "react";
-import { Menu, ShoppingBag } from "lucide-react";
+import { Menu, X, ShoppingBag, Search, User } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
 const navLinks = [
-  { href: "/#home", label: "Home" },
-  { href: "/#about", label: "About" },
-  { href: "/#drips", label: "IV Drips" },
-  { href: "/shot-bar", label: "Shot Bar" },
-  { href: "/#how", label: "How It Works" },
-  { href: "/#faq", label: "FAQs" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/",               label: "Home" },
+  { href: "/shop",           label: "Shop" },
+  { href: "/about",          label: "About Us" },
+  { href: "/results",        label: "Results" },
+  { href: "/ai-consultant",  label: "AI Consultant" },
+  { href: "/#contact",       label: "Contact" },
 ];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen]       = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { totalItems, openDrawer } = useCart();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <header
-    className={`absolute left-1/2 top-4 z-50 w-[95%] -translate-x-1/2 rounded-2xl border border-white/10 transition-all duration-500 ${
+      className={`sticky top-0 z-50 w-full transition-all duration-400 ${
         scrolled
-        ? "bg-ink/90 backdrop-blur-xl shadow-[0_2px_25px_rgba(0,0,0,0.6)]"
-        : "bg-ink/60 backdrop-blur-xl shadow-[0_2px_25px_rgba(0,0,0,0.4)]"
-    }`}
+          ? "bg-white/95 backdrop-blur-md shadow-[0_2px_20px_rgba(58,45,45,0.08)]"
+          : "bg-white/80 backdrop-blur-sm"
+      }`}
     >
-
       <nav className="container flex items-center justify-between py-4">
-        {/* Logo */}
-        <Link href="/#home" className="flex items-center gap-3">
-        <div className="relative flex items-center justify-center">
-        <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-amber-400/40 via-yellow-300/30 to-amber-500/40 blur-lg opacity-60 animate-pulse-slow"></div>
-        <Image
-            src="/refresh-logo.svg"
-            alt="Refresh-IV Taci Logo"
-            width={40}
-            height={40}
-            className="relative h-10 w-auto z-10 drop-shadow-[0_0_4px_rgba(255,215,0,0.3)]"
-        />
-        </div>
 
-          <span className="font-semibold text-lg tracking-wide text-white/90 font-playfair">
-            Refresh-<span className="text-teal-400">IV</span><span className="text-shimmer-gold">.Taci</span>
+        {/* Logo */}
+        <Link href="/" className="flex flex-col items-start leading-none select-none">
+          <span
+            className="font-playfair font-bold tracking-[0.12em] uppercase"
+            style={{ fontSize: "1.15rem", color: "#3A2D2D" }}
+          >
+            C-Suite
+          </span>
+          <span
+            className="font-inter font-light tracking-[0.3em] uppercase"
+            style={{ fontSize: "0.58rem", color: "rgba(58,45,45,0.55)" }}
+          >
+            Beauty Boutique
           </span>
         </Link>
 
         {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((i) => (
-            <a
-              key={i.href}
-              href={i.href}
-              className="text-sm text-white/80 hover:text-white transition-colors"
+        <div className="hidden md:flex items-center gap-7">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-sm font-medium transition-colors duration-200 hover:text-gold-500"
+              style={{ color: "rgba(58,45,45,0.75)", letterSpacing: "0.03em" }}
             >
-              {i.label}
-            </a>
+              {link.label}
+            </Link>
           ))}
-          {/* Cart icon */}
-          <button
-            onClick={openDrawer}
-            className="relative p-2 text-white/70 hover:text-white transition-colors"
-            aria-label="Open cart"
-          >
-            <ShoppingBag size={22} />
-            {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-yellow-400 text-ink
-                               text-[10px] font-bold flex items-center justify-center leading-none">
-                {totalItems > 9 ? "9+" : totalItems}
-              </span>
-            )}
-          </button>
-          <a href="/book" className="btn-gold text-sm text-ink">
-            Book Now
-          </a>
         </div>
 
-        {/* Mobile: cart + toggle */}
-        <div className="md:hidden flex items-center gap-2">
+        {/* Right icons */}
+        <div className="hidden md:flex items-center gap-1">
+          <button
+            className="p-2 rounded-full transition-colors hover:bg-cream-200"
+            aria-label="Search"
+            style={{ color: "rgba(58,45,45,0.65)" }}
+          >
+            <Search size={18} />
+          </button>
+          <button
+            className="p-2 rounded-full transition-colors hover:bg-cream-200"
+            aria-label="Account"
+            style={{ color: "rgba(58,45,45,0.65)" }}
+          >
+            <User size={18} />
+          </button>
           <button
             onClick={openDrawer}
-            className="relative p-2 text-white/70 hover:text-white transition-colors"
+            className="relative p-2 rounded-full transition-colors hover:bg-cream-200"
             aria-label="Open cart"
+            style={{ color: "rgba(58,45,45,0.65)" }}
           >
             <ShoppingBag size={20} />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-yellow-400 text-ink
-                               text-[9px] font-bold flex items-center justify-center leading-none">
+              <span
+                className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-white text-[9px] font-bold flex items-center justify-center leading-none"
+                style={{ backgroundColor: "#E88C9A" }}
+              >
+                {totalItems > 9 ? "9+" : totalItems}
+              </span>
+            )}
+          </button>
+          <Link href="/shop" className="btn-primary text-xs ml-2 px-5 py-2.5">
+            Shop Now
+          </Link>
+        </div>
+
+        {/* Mobile: cart + hamburger */}
+        <div className="md:hidden flex items-center gap-1">
+          <button
+            onClick={openDrawer}
+            className="relative p-2 transition-colors"
+            aria-label="Open cart"
+            style={{ color: "rgba(58,45,45,0.65)" }}
+          >
+            <ShoppingBag size={20} />
+            {totalItems > 0 && (
+              <span
+                className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full text-white text-[9px] font-bold flex items-center justify-center leading-none"
+                style={{ backgroundColor: "#E88C9A" }}
+              >
                 {totalItems > 9 ? "9+" : totalItems}
               </span>
             )}
           </button>
           <button
-            className="p-2"
+            className="p-2 transition-colors"
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
+            style={{ color: "#3A2D2D" }}
           >
-            <Menu color="white" />
+            {open ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
 
       {/* Mobile dropdown */}
       {open && (
-        <div className="md:hidden border-t border-white/10 bg-ink/95">
-          <div className="container py-4 grid gap-3">
-            {navLinks.map((i) => (
-              <a
-                key={i.href}
-                href={i.href}
-                className="text-white/90 py-2"
+        <div
+          className="md:hidden border-t"
+          style={{ borderColor: "rgba(58,45,45,0.08)", backgroundColor: "rgba(255,253,251,0.98)" }}
+        >
+          <div className="container py-5 grid gap-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-base py-1 transition-colors hover:text-gold-500"
+                style={{ color: "rgba(58,45,45,0.80)" }}
                 onClick={() => setOpen(false)}
               >
-                {i.label}
-              </a>
+                {link.label}
+              </Link>
             ))}
-            <a
-              href="/book"
-              className="btn-gold text-sm text-ink text-center"
+            <Link
+              href="/shop"
+              className="btn-primary text-sm text-center mt-2"
               onClick={() => setOpen(false)}
             >
-              Book Now
-            </a>
+              Shop Now
+            </Link>
           </div>
         </div>
       )}

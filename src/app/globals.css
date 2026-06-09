@@ -2,223 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─── Font variables ─────────────────────────────────── */
 :root {
-  --font-inter: 'Inter', sans-serif;
+  --font-inter:    'Inter', sans-serif;
   --font-playfair: 'Playfair Display', serif;
+  --font-script:   'Dancing Script', cursive;
+  --vh: 1vh;
 }
 
-.font-playfair {
-  font-family: var(--font-playfair), serif;
+/* ─── Base reset ─────────────────────────────────────── */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #FFFDFB;
+  color: #3A2D2D;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.font-inter {
-  font-family: var(--font-inter), sans-serif;
+/* Remove the forced full-height that caused blank sections */
+section {
+  min-height: auto;
 }
 
-html, body { height: 100%; margin: 0; background: #0E0F11; color: #EAEAEA; }
+/* ─── Font utilities ─────────────────────────────────── */
+.font-playfair { font-family: var(--font-playfair), serif; }
+.font-inter    { font-family: var(--font-inter),    sans-serif; }
+.font-script   { font-family: var(--font-script),   cursive; }
 
-/* Smooth fonts */
-body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+/* ─── Button system ──────────────────────────────────── */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-semibold text-white transition-all duration-300 cursor-pointer;
+  background-color: #E88C9A;
+  letter-spacing: 0.04em;
+}
+.btn-primary:hover {
+  background-color: #D97080;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(232,140,154,0.40);
+}
 
-/* Re-usable utility for the gold CTA look */
 .btn-gold {
-  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 font-semibold text-ink shadow-soft transition-transform will-change-transform;
-  background-image: linear-gradient(90deg, #f7e7a6 0%, #e8c766 30%, #d7a21a 60%, #f4d06f 100%);
+  @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-semibold transition-all duration-300 cursor-pointer;
+  background: linear-gradient(90deg, #F7E7A6 0%, #E8C766 30%, #C9A15D 60%, #D4B96B 100%);
+  color: #3A2D2D;
+  letter-spacing: 0.04em;
 }
-.btn-gold:hover { transform: translateY(-1px) scale(1.01); }
+.btn-gold:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(201,161,93,0.40);
+}
+
 .btn-outline {
-  @apply inline-flex items-center justify-center rounded-xl px-6 py-3 border border-white/20 text-white;
+  @apply inline-flex items-center justify-center rounded-full px-8 py-3 font-semibold transition-all duration-300 cursor-pointer border;
+  border-color: rgba(58,45,45,0.25);
+  color: #3A2D2D;
+  letter-spacing: 0.04em;
 }
+.btn-outline:hover {
+  border-color: #C9A15D;
+  color: #C9A15D;
+}
+
+/* ─── Section utilities ──────────────────────────────── */
 .section {
   @apply relative py-20 md:py-28;
 }
+
 .section-title {
-  @apply text-3xl md:text-5xl font-playfair tracking-tight text-white relative;
+  font-family: var(--font-playfair), serif;
+  @apply text-3xl md:text-5xl tracking-tight leading-tight;
+  color: #3A2D2D;
 }
 
-/* ✨ Elegant gold underline accent */
 .section-title::after {
   content: "";
   display: block;
-  width: 90px;
-  height: 3px;
-  margin-top: 0.75rem;
-  background: linear-gradient(90deg, #f7e7a6, #e8c766, #d7a21a, #f4d06f);
+  width: 56px;
+  height: 2px;
+  margin-top: 1rem;
+  background: linear-gradient(90deg, #C9A15D, #E8C766);
   border-radius: 2px;
 }
+
 .section-sub {
-  @apply text-white/70 max-w-3xl;
+  @apply max-w-3xl leading-relaxed;
+  color: rgba(58,45,45,0.65);
 }
 
-@keyframes pulse-slow {
-  0%, 100% {
-    opacity: 0.55;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.9;
-    transform: scale(1.03);
-  }
-}
-
-.animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
-}
-
-/* 🔥 Elegant gold glow hover effect */
-.btn-gold:hover {
-  box-shadow: 0 0 15px rgba(255, 215, 0, 0.45),
-              0 0 30px rgba(255, 215, 0, 0.25);
-  transform: scale(1.03);
-  transition: all 0.4s ease-in-out;
-}
-
-/* Mobile full-height fix + smooth scroll */
-html,
-body {
-  height: 100%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
-}
-
-/* ✅ Let content flow naturally, no clipping */
-section {
-  min-height: 100vh;
-}
-
-/* 🧘 Add breathing room for bottom UI bars on mobile */
-@media (max-width: 768px) {
-  section {
-    padding-bottom: 6rem; /* keeps gold lines + buttons visible above nav bar */
-  }
-}
-
-/* --- shimmer + animations below --- */
-@keyframes shimmerText {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-.text-shimmer {
-  background: linear-gradient(
-    90deg,
-    rgba(180, 220, 255, 0.15),
-    rgba(255, 255, 255, 0.95),
-    rgba(120, 200, 255, 0.45),
-    rgba(255, 255, 255, 0.95),
-    rgba(180, 220, 255, 0.15)
-  );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmerText 6s ease-in-out infinite;
-  animation-delay: 1.5s;
-  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.25));
-}
-
+/* ─── Gold shimmer ───────────────────────────────────── */
 @keyframes shimmerGold {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
 }
 
 .text-shimmer-gold {
   background: linear-gradient(
     90deg,
-    rgba(255, 230, 180, 0.15),
-    rgba(255, 215, 100, 0.95),
-    rgba(255, 245, 200, 0.65),
-    rgba(255, 215, 100, 0.95),
-    rgba(255, 230, 180, 0.15)
+    #C9A15D 0%,
+    #E8C766 40%,
+    #F7E7A6 60%,
+    #C9A15D 100%
   );
-  background-size: 250% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: shimmerGold 8s ease-in-out infinite;
-  animation-delay: 1.5s;
-  filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.35));
-}
-
-.price-shimmer {
-  background: linear-gradient(90deg, #f7e7a6, #e8c766, #d7a21a, #f7e7a6);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 4s linear infinite;
+  animation: shimmerGold 5s ease-in-out infinite;
 }
 
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-
-/* ✨ One-time gold sweep for section titles */
-@keyframes goldSweepOnce {
-  0% {
-    background-position: -200% 0;
-    opacity: 0.8;
-  }
-  40% {
-    opacity: 1;
-  }
-  100% {
-    background-position: 200% 0;
-    opacity: 1;
-  }
-}
-
-.text-sweep-gold {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 230, 180, 0.1),
-    rgba(255, 215, 100, 1),
-    rgba(255, 240, 200, 0.8),
-    rgba(255, 215, 100, 1),
-    rgba(255, 230, 180, 0.1)
-  );
-  background-size: 250% 100%;
+.price-shimmer {
+  background: linear-gradient(90deg, #C9A15D, #E8C766, #C9A15D);
+  background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: goldSweepOnce 2.5s ease-out forwards;
+  animation: shimmerGold 3s linear infinite;
 }
 
-
-/* ✅ Mobile viewport height fix */
-:root {
-  --vh: 1vh;
+/* ─── Pulse animation (logo glow etc.) ──────────────── */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%       { opacity: 1;   transform: scale(1.04); }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 6s ease-in-out infinite;
 }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  background: #0e0f11;
-  height: 100%;
-}
-
-/* Force the section to respect mobile browser height */
-section {
-  min-height: calc(var(--vh, 1vh) * 100);
-}
-
-/* Prevents iOS viewport shift gray space */
-body {
-  overscroll-behavior: none;
-  background: #000;
-}
-
-
-html,
-body {
-  background-color: #000 !important;
-  overscroll-behavior: none;
-  color-scheme: dark;
+/* ─── Mobile viewport height fix ────────────────────── */
+@media (max-width: 768px) {
+  .hero-section {
+    height: calc(var(--vh, 1vh) * 100);
+  }
 }

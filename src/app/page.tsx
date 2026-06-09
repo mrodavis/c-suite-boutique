@@ -1,3 +1,4 @@
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import FeatureGrid from "@/components/FeatureGrid";
@@ -11,17 +12,18 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
+    <>
+      <AnnouncementBar />
       <Navbar />
       <Hero />
       <FeatureGrid />
       <DripCards />
-      <AddOns />
       <WellnessShop />
+      <AddOns />
       <HowItWorks />
       <FAQ />
       <Contact />
       <Footer />
-    </main>
+    </>
   );
 }

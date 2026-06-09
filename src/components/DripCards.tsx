@@ -1,208 +1,168 @@
 "use client";
 
-import Image from "next/image";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { CheckCircle2 } from "lucide-react";
+import Link from "next/link";
 
-// 🩺 Refreshed & Accurate Offerings
-const drips = [
-  {
-    name: "Refresh IV (Normal Saline)",
-    price: "$155",
-    desc: "A simple yet powerful hydration drip with Normal Saline to restore balance, rehydrate your body, and refresh your system. Perfect for anyone feeling depleted from travel, workouts, or everyday fatigue.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/1",
-    image: "/images/drips/refresh-iv-normal-saline.jpeg",
-  },
-  {
-    name: "Refresh Plus IV (Lactated Ringer)",
-    price: "$165",
-    desc: "An upgraded hydration drip with Lactated Ringer’s for enhanced electrolyte replacement. Ideal for faster recovery after illness, dehydration, or intense exercise.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/2",
-    image: "/images/drips/refresh-plus-iv-lactated.png",
-  },
-  {
-    name: "Energy Boost IV",
-    price: "$175",
-    desc: "Packed with B-Complex vitamins, this drip restores energy levels, improves focus, and supports a healthy metabolism. Great for busy professionals or anyone feeling run down.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/3",
-    image: "/images/drips/energy-boost-iv.png",
-  },
-  {
-    name: "Beauty & Glow IV",
-    price: "$275",
-    desc: "A skin-loving infusion with Vitamin C, Glutathione, Zinc, and Biotin that brightens skin, promotes collagen production, and reduces oxidative stress for that healthy glow.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/4",
-    image: "/images/drips/beauty-glow-iv.png",
-  },
-  {
-    name: "Hormone Balance IV",
-    price: "$200",
-    desc: "Formulated with Magnesium and B-Complex vitamins to restore essential nutrients, support hormonal health, and uplift mood — encouraging a sense of harmony from within.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/5",
-    image: "/images/drips/hormone-balance-iv.png",
-  },
-  {
-    name: "Hormone Balance IV (Women’s Health)",
-    price: "$250",
-    desc: "Specially designed for women with Magnesium, Vitamin B-Complex, and Vitamin C to help regulate hormones, reduce fatigue, and promote emotional balance and energy.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/6",
-    image: "/images/drips/hormone-balance-iv-womens.png",
-  },
-  {
-    name: "Sexual Health Drip",
-    price: "$275",
-    desc: "Formulated to boost stamina, improve circulation, and enhance vitality with Vitamin B12 and amino acids such as Arginine — supporting hormonal balance and confidence.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/7",
-    image: "/images/drips/sexual-health-drip.png",
-  },
-  {
-    name: "Hangover Recovery",
-    price: "$250",
-    desc: "Rehydrate and revive fast with Vitamin C, B-Complex, and Magnesium. Includes Zofran for anti-nausea support — perfect for post-event recovery.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/8",
-    image: "/images/drips/hangover-recovery.png",
-  },
-  {
-    name: "Immunity Boost IV",
-    price: "$250",
-    desc: "A powerful infusion of Vitamin C, Zinc, and B-Complex to strengthen your immune defenses, reduce recovery time, and keep you resilient through stress or illness.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/9",
-    image: "/images/drips/immunity-boost-iv.png",
-  },
-  {
-    name: "Myer’s Cocktail",
-    price: "$250",
-    desc: "The classic wellness drip — a restorative blend of Magnesium, Calcium, B-Vitamins, and Vitamin C designed to reduce fatigue, support immunity, and boost energy.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/10",
-    image: "/images/drips/myers-cocktail.jpeg",
-  },
-  {
-    name: "NAD+ Infusion 250mg",
-    price: "$450",
-    desc: "A restorative NAD⁺ infusion that enhances cellular energy, focus, and recovery. Ideal for first-time clients or those seeking gentle rejuvenation.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/11",
-    image: "/images/drips/nad-infusion-250mg.jpeg",
-  },
-  {
-    name: "NAD+ Infusion 500mg",
-    price: "$600",
-    desc: "High-dose NAD⁺ infusion delivering maximum cellular repair, improved cognitive clarity, and deep rejuvenation for long-lasting vitality.",
-    link: "https://refreshivtaci.janeapp.com/#/staff_member/1/treatment/12",
-    image: "/images/drips/nad-infusion-500mg.jpeg",
-  },
+const features = [
+  "Reduces the appearance of dark spots",
+  "Evens out skin tone",
+  "Improves texture and clarity",
+  "Long-lasting hydration",
+  "For all skin types",
 ];
 
+/* ─── CSS jar (smaller version for showcase) ─────────── */
+function ShowcaseJar() {
+  return (
+    <div className="relative flex items-center justify-center">
+      {/* Background swirl */}
+      <div
+        className="absolute w-80 h-80 rounded-full blur-3xl opacity-60 pointer-events-none"
+        style={{ background: "radial-gradient(circle, #F5D6D6 0%, #FAE0D0 40%, transparent 70%)" }}
+      />
+      <div
+        className="absolute top-0 left-4 w-40 h-40 rounded-full blur-2xl opacity-50 pointer-events-none"
+        style={{ background: "#F5D6D6" }}
+      />
+
+      <div className="relative z-10 flex flex-col items-center">
+        {/* Lid */}
+        <div
+          className="w-56 h-[64px] rounded-t-[48px] rounded-b-[10px] shadow-xl"
+          style={{
+            background:
+              "linear-gradient(140deg,#EED078 0%,#C9A15D 35%,#B8860B 65%,#D4B96B 100%)",
+            boxShadow: "0 8px 30px rgba(201,161,93,0.50), inset 0 1px 0 rgba(255,240,150,0.30)",
+          }}
+        />
+        {/* Body */}
+        <div
+          className="relative w-56 h-52 rounded-b-[48px] flex flex-col items-center justify-center px-8 border overflow-hidden"
+          style={{
+            background: "linear-gradient(160deg,#FFFFFF 0%,#FAF7F2 55%,#F0EBE0 100%)",
+            borderColor: "rgba(201,161,93,0.15)",
+            boxShadow: "0 30px 70px rgba(58,45,45,0.14), inset 0 1px 0 rgba(255,255,255,0.9)",
+          }}
+        >
+          <div
+            className="absolute right-6 top-5 w-2.5 h-24 rounded-full blur-sm opacity-40"
+            style={{
+              background: "linear-gradient(180deg,rgba(255,255,255,0.9),transparent)",
+              transform: "rotate(12deg)",
+            }}
+          />
+          <div className="text-center">
+            <p className="tracking-[0.32em] uppercase font-light" style={{ fontSize: "0.55rem", color: "rgba(58,45,45,0.80)" }}>C-Suite</p>
+            <p className="tracking-[0.18em] uppercase mt-0.5" style={{ fontSize: "0.40rem", color: "rgba(58,45,45,0.50)" }}>Beauty Boutique</p>
+            <div className="w-10 h-px my-3 mx-auto" style={{ background: "linear-gradient(90deg,transparent,#C9A15D,transparent)" }} />
+            <p className="tracking-[0.14em] uppercase font-medium" style={{ fontSize: "0.52rem", color: "rgba(58,45,45,0.88)", lineHeight: 1.5 }}>
+              Skin Lightening<br />Cream
+            </p>
+            <p className="mt-2 tracking-[0.10em] uppercase" style={{ fontSize: "0.36rem", color: "rgba(58,45,45,0.45)" }}>
+              Brighten · Even Tone · Glow
+            </p>
+            <p className="mt-1" style={{ fontSize: "0.34rem", color: "rgba(58,45,45,0.30)" }}>50g / 1.76 oz</p>
+          </div>
+        </div>
+
+        {/* Platform */}
+        <div
+          className="w-72 h-6 rounded-full mt-2 shadow-lg"
+          style={{
+            background: "linear-gradient(90deg,#E4DDD6 0%,#F5F0EB 40%,#F5F0EB 60%,#E4DDD6 100%)",
+            boxShadow: "0 10px 30px rgba(58,45,45,0.12)",
+          }}
+        />
+        <div className="w-60 h-2 rounded-full mt-1 opacity-20" style={{ background: "#3A2D2D", filter: "blur(4px)" }} />
+      </div>
+
+      {/* Rose swish decorations */}
+      <div className="absolute bottom-8 right-4 pointer-events-none">
+        <div className="w-20 h-20 rounded-full opacity-60" style={{ background: "radial-gradient(circle, #E88C9A 30%, #F5D6D6 80%)", filter: "blur(3px)" }} />
+      </div>
+    </div>
+  );
+}
+
+/* ─── Product Showcase Section ────────────────────────── */
 export default function DripCards() {
   return (
-    <section id="drips" className="section bg-charcoal">
+    <section
+      id="product-showcase"
+      className="section"
+      style={{ background: "linear-gradient(135deg,#FAE8E8 0%,#FFF7F2 50%,#FAF7F2 100%)" }}
+    >
       <div className="container">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true }}
-          className="flex items-end justify-between gap-6 flex-wrap"
-        >
-          <h2 className="section-title font-playfair text-4xl md:text-5xl text-shimmer-gold">
-            IV Drips
-          </h2>
-          <a href="/book" className="btn-gold text-ink font-[var(--font-inter)]">
-            Book a Session
-          </a>
-        </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Cards Grid */}
-        <motion.div
-          className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-5"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ staggerChildren: 0.2 }}
-        >
-          {drips.map((d, i) => (
-            <InteractiveCard key={d.name} index={i} {...d} />
-          ))}
-        </motion.div>
+          {/* Left: Product visual */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            className="flex items-center justify-center"
+          >
+            <div className="w-full max-w-sm">
+              <ShowcaseJar />
+            </div>
+          </motion.div>
+
+          {/* Right: Copy */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="lg:pl-8"
+          >
+            <p
+              className="text-xs font-semibold uppercase tracking-[0.25em] mb-3"
+              style={{ color: "#E88C9A" }}
+            >
+              Our Signature
+            </p>
+            <h2
+              className="font-playfair font-normal leading-tight mb-4"
+              style={{ fontSize: "clamp(1.75rem,4vw,2.5rem)", color: "#3A2D2D" }}
+            >
+              Skin Lightening Cream
+            </h2>
+            <div
+              className="w-12 h-0.5 mb-6"
+              style={{ background: "linear-gradient(90deg,#C9A15D,#E8C766)" }}
+            />
+            <p
+              className="text-base leading-relaxed mb-8"
+              style={{ color: "rgba(58,45,45,0.68)" }}
+            >
+              Formulated with powerful brightening agents and botanical extracts
+              that work in harmony to lighten, hydrate and restore your skin&apos;s
+              natural radiance.
+            </p>
+
+            <ul className="space-y-3 mb-10">
+              {features.map((feat) => (
+                <li key={feat} className="flex items-center gap-3">
+                  <CheckCircle2
+                    size={17}
+                    className="flex-shrink-0"
+                    style={{ color: "#C9A15D" }}
+                  />
+                  <span className="text-sm" style={{ color: "rgba(58,45,45,0.75)" }}>
+                    {feat}
+                  </span>
+                </li>
+              ))}
+            </ul>
+
+            <Link href="/shop" className="btn-primary inline-flex">
+              Shop Now
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 }
-
-/* ✨ Reusable Interactive Card with 3D Tilt + Float */
-function InteractiveCard({
-  name,
-  desc,
-  price,
-  index,
-  link,
-  image,
-}: {
-  name: string;
-  desc: string;
-  price: string;
-  index: number;
-  link?: string;
-  image?: string;
-}) {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 150, damping: 15 });
-  const springY = useSpring(y, { stiffness: 150, damping: 15 });
-
-  const rotateX = useTransform(springY, [-50, 50], [15, -15]);
-  const rotateY = useTransform(springX, [-50, 50], [-15, 15]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const offsetX = e.clientX - rect.left - rect.width / 2;
-    const offsetY = e.clientY - rect.top - rect.height / 2;
-    x.set(offsetX);
-    y.set(offsetY);
-  };
-
-  const resetTilt = () => {
-    x.set(0);
-    y.set(0);
-  };
-
-  return (
-    <motion.a
-      href={link || "#"}
-      target="_blank"
-      rel="noopener noreferrer"
-      style={{
-        rotateX,
-        rotateY,
-        transformStyle: "preserve-3d",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={resetTilt}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      animate={{
-        y: [0, -8, 0],
-        transition: {
-          duration: 6,
-          ease: "easeInOut",
-          repeat: Infinity,
-          delay: index * 0.3,
-        },
-      }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="rounded-2xl border border-white/10 bg-ink/80 backdrop-blur-sm p-6 cursor-pointer
-                 hover:border-gold/30 hover:shadow-[0_0_45px_rgba(255,215,0,0.15)] 
-                 transition-all duration-300 ease-out transform-gpu will-change-transform block"
-    >
-      {image && (
-        <div className="relative w-full aspect-square rounded-xl overflow-hidden mb-4">
-          <Image src={image} alt={name} fill className="object-cover" />
-        </div>
-      )}
-      <h3 className="text-xl font-semibold text-white font-[var(--font-inter)]">{name}</h3>
-      <p className="text-white/70 mt-2 text-sm leading-relaxed">{desc}</p>
-      <div className="mt-4 font-bold text-gold price-shimmer">{price}</div>
-    </motion.a>
-  );
-}
-
