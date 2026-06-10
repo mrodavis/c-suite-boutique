@@ -46,7 +46,14 @@ export const metadata: Metadata = {
     title: "C-Suite Beauty Boutique",
     description: "Luxury skincare. Confidence. Radiance. Elevated.",
   },
-  icons: { icon: "/favicon.ico" },
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "32x32" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
   robots: { index: true, follow: true },
 };
 
